@@ -1,0 +1,194 @@
+Aelena
+------
+Disallowed to join: Kharim, Knight, Nergal, Tzarakk, Lord_chaos
+Background must be Evil religious or Civilized.
+Must be at max level in the Disciple guild.
+
+Alchemists
+----------
+Background must be Civilized.
+
+Animist
+-------
+Background must be Good religious.
+Must pass one of the following:
+  * Must be at max level in the Liberator guild.
+  * Must be at max level in the Templar guild.
+  * Must be at max level in the Monk guild.
+
+Archers
+-------
+Background must be Nomad.
+
+Barbarian
+---------
+Background must be Nomad.
+
+Bard
+----
+Background must be Civilized.
+
+Beastmaster
+-----------
+Background must be Nomad.
+Must be at max level in the Squire guild.
+
+Channelers
+----------
+Background must be Magical.
+
+Cavalier
+--------
+Background must be Civilized or Nomad.
+Must be at least level 10 in the Squire guild.
+
+Civilized fighters
+------------------
+Background must be Civilized.
+
+Civmage
+-------
+Background must be Civilized.
+
+Crimson
+-------
+Background must be Nomad.
+
+Disciple
+--------
+Allowed to join: Kharim, Nergal, Aelena, Tzarakk
+Disallowed to join: Ranger, Lord_chaos
+Background must be Evil religious or Nomad or Civilized.
+
+Druids
+------
+Background must be Good religious.
+
+Explorer
+--------
+All background is allowed.
+
+Folklorist
+----------
+Background must be Civilized.
+
+Inner circle
+------------
+Background must be Magical.
+Must be at max level in the Mage guild.
+Must pass one of the following:
+  * Must be at max level in the Mage acid guild.
+  * Must be at max level in the Mage asphyxiation guild.
+  * Must be at max level in the Mage cold guild.
+  * Must be at max level in the Mage electricity guild.
+  * Must be at max level in the Mage fire guild.
+  * Must be at max level in the Mage magical guild.
+  * Must be at max level in the Mage poison guild.
+  * Must be at max level in the Psionicist guild.
+  * Must be at max level in the Channellers guild.
+
+Kharim
+------
+Disallowed to join: Ranger, Nergal, Aelena, Tzarakk, Lord_chaos
+Background must be Nomad or Evil religious.
+Must be at max level in the Disciple guild.
+
+Knight
+------
+Must be at least level 10 in the Squire guild.
+Must pass one of the following:
+  * Background must be Civilized.
+  * Must be at max level in the Templar guild.
+  * Must be at max level in the Liberator guild.
+
+Liberator
+---------
+Background must be Good religious.
+
+Mage
+----
+Allowed to join: Acid, Asphyxiation, Cold, Electricity, Fire, Magical, Poison, Inner_circle
+Background must be Magical.
+
+Merchant
+--------
+Background must be Civilized.
+
+Monk
+----
+Background must be Good religious.
+
+Navigator
+---------
+Background must be Evil religious or Good religious or Magical or Civilized.
+
+Nergal
+------
+Disallowed to join: Kharim, Aelena, Tzarakk
+Background must be Evil religious.
+Must be at max level in the Disciple guild.
+
+Nun
+---
+Background must be Good religious.
+
+Priests
+-------
+Background must be Evil religious.
+
+Psionicist
+----------
+Background must be Magical.
+
+Ranger
+------
+Background must be Nomad.
+
+Reaver
+------
+Background must be Evil religious.
+
+Riftwalker
+----------
+Background must be Magical.
+
+Runemages
+---------
+Background must be Civilized.
+
+Sabres
+------
+Background must be Civilized.
+
+Spider
+------
+Background must be Evil religious.
+
+Squire
+------
+Must pass one of the following:
+  * Background must be Civilized or Nomad.
+  * Must be at max level in the Templar guild.
+  * Must be at max level in the Liberator guild.
+
+Tarmalen
+--------
+Background must be Good religious.
+
+Templar
+-------
+Background must be Good religious.
+
+Tiger
+-----
+Background must be Evil religious.
+
+Treenav
+-------
+Background must be Civilized or Magical or Nomad or Good religious or Evil religious.
+
+Tzarakk
+-------
+Disallowed to join: Kharim, Squire, Nergal, Aelena, Lord_chaos
+Background must be Evil religious.
+Must be at max level in the Disciple guild.
