@@ -1,9 +1,8 @@
 // jos vaihtuu valitut guild levelit
-function changeInGuildLvls() {
+function changeInGuildLvls(leveli, kohde) {
+  const selectedGuild = document.getElementById('Guild'+kohde+'_Selection').value;
   
-  const selectedRaceIs = document.getElementById('Race_Selection').value;
-  // race valinta aktivoituu (taitaa olla defaulttina barso):
-  raceSelected(selectedRaceIs);
+  showSkillsAndSpells(selectedGuild, kohde);
 }
 
 // näyttää skillit ja spellit mitä voi treenata
@@ -12,21 +11,11 @@ function showSkillsAndSpells(kilta, kohta) {
   // paikka mihin laitetaan tieto:
   const guildInfo = document.getElementById('guildInfot');
   const findRightSelection = 'Guild'+kohta+'_lvls_Selection';
-  console.log('frs ', findRightSelection);
   const selectedLevelsPlace = document.getElementById(findRightSelection);
-  console.log(selectedLevelsPlace);
-  // pitäisi varmaan tähän selvittää monta leveliä valittu...
-  // sen voisi saada selville ton kohta muuttujan avulla...
-  // joku niinku näin tms:
-  //  Guild1_lvls_Selection
-  //const selectedLevels = GuildLevels.value; kohtalla saadaan se oikea lokero sitte
-  // mutta lisätään myöhemmin... jos eka nyt jotain saisi toimii :D
-  // väliaikasesti:
   const selectedLevels = selectedLevelsPlace.value;
   
   // haetaan kilta:
   const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
-  console.log(kilta, kohta, selectedGuild);
   
   // laitetaan tiedot:
   guildInfo.innerHTML = '<br>Guild: '+ selectedGuild[0].longName+ '<br><br>';
@@ -56,7 +45,7 @@ function showSkillsAndSpells(kilta, kohta) {
         // lisää max prosentti, jos ei ole jo.
         if (filteredNumbers[filteredNumbers.length-1] !== skill.levels[selectedLevels-1]) {filteredNumbers.push(skill.levels[selectedLevels-1]);}  
         
-        guildInfo.innerHTML = guildInfo.innerHTML + '<form name= "rGs'+ skill.name + '" id= "rGs'+ skill.name + '">'+ skill.name+ ' '+
+        guildInfo.innerHTML = guildInfo.innerHTML + '<form class= "skills" name= "rGs'+ skill.name + '" id= "rGs'+ skill.name + '">'+ skill.name+ ' '+
           '<select id= "skillPercent'+skill.name+'" onchange= "calcSpentExpRaceGuilds()">'+ 
             '<option>0</option>'+
           '</select>'+
@@ -92,7 +81,6 @@ function showSkillsAndSpells(kilta, kohta) {
         // lisää max prosentti, jos ei ole jo.
         if (filteredNumbers[filteredNumbers.length-1] !== skill.levels[selectedLevels-1]) {filteredNumbers.push(skill.levels[selectedLevels-1]);}  
         
-        console.log('filtNums: ', filteredNumbers);
         guildInfo.innerHTML = guildInfo.innerHTML + '<form class= "skills" name= "rGs'+ skill.name + '" id= "rGs'+ skill.name + '">'+ skill.name+ ' '+
           '<select id= "skillPercent'+skill.name+'" onchange= "calcSpentExpRaceGuilds()">'+ 
             '<option>0</option>'+

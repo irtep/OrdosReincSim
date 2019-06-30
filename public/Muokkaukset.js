@@ -1,27 +1,4 @@
-/*
-  Tähän voidaan kirjottaa viimesimmät muokkaukset:
-  CASE esimerkki:
-  
-  var muuttuja = 'ordos';
-  var tulos = null;
-  
-  switch (muuttuja) {
-  
-    case 'ordos':
-      // tähän mitä pitää tehä jos muuttuja on 'ordos'
-      tulos = 'ordos';
-    break; // tämä tarkoittaa että loppuu etsiminen tähän, muuten kattoo muutkin caset.
-    
-    case 'caped':
-      tulos = 'caped';
-    break;
-    
-    // default tapahtuu, jos ei löytynyt mikään caseista. huom. vähän erilainen kirjotusasu
-    // yleensä minun mielestä aina kannattaa laitta default, vaikka ei ehkä tarvitsisi
-    default: tulos = 'ei löytynyt';  
-  }
-  
-*/
+
 /*
   22 kesäkuuta 2019, klo 19:00: Päivitin reincsim.html tiedoston kokonaisuudessaan, mitä olin muutoksia tehny omalla koneella
   (muutoksia lähinnä perus aloitus tilan ulkoasu + asettelu, joita myöhemmin voidaan halutessa muuttaa) / ordos
@@ -102,4 +79,21 @@
 /*
   28 kesäkuuta 2019, klo 16:36: Päivitin RaceBackgroundGuilds.js kiltojen Status asetus while loopit yhteen caseen ja 647 riviä
   vähemmän koodia ja sama toimivuus. WAU! / ordos
+*/
+/*
+  28 kesäkuuta 2019, klo 22:23. tein kiltanvalintaa valmiimmaksi... pitäisi varmaan lisätä seuraavaksi joku toinen kilta, jossa requirementsejä
+  ja tehä nekin toimimaan. Rupesin ottamaan kanssa backuppeja, ni jos tarviit jotain niistä, ni ilmottele. / caped
+*/
+/*
+  29 kesäkuuta 2019, klo 12:36: Laitoin style asetuksen reincsim.html tiedostoon super hienoille "Reset all" nappulalle ja osasta select
+  boxeille jotka ovat aika COOL! Jatkossa yritän saada loput valintaboxit myös mutta sovitaan eka jätetäänkö tylsän "Perus" asteelle sivut
+  vai tehdäänkö heti kerralla "Tyylikkkäät" sivut. Ja myöskin style.css tiedostoa voisi hyödyntää ja laittaa sinne style asetukset
+  myöskin... / ordos
+*/
+/*
+  29 kesäkuuta 2019, klo 17:10: Laitoin style asetelmat style.css tiedostoon html koodin seasta joka varmaan parempi tapa ja
+  päivitin reincsim.html tiedostoa / ordos
+*/
+/*
+  29 kesäkuuta 2019, klo 21:18: Muokkasin hieman ulkoasua style asetuksilla / ordos
 */

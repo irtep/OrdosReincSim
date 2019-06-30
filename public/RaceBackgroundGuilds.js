@@ -4897,6 +4897,8 @@
   }
   // Kutsutaan funktiota
   Calculate_levels();
+  // päivitetään mahdolliset annetut skill/spell listat
+  changeInGuildLvls(leveli, kohde);
  }
  
  function Calculate_levels()
