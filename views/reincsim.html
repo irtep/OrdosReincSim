@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body bgcolor="white" onload="Start()">
+<body bgcolor="white">
 
 <!-- PAA Taulukko alkaa -->
 <table name="paa_taulukko" border="0" width="100%" height="100%" cellpadding="10">
@@ -25,8 +25,8 @@
   <tr>
   <td>
   <b class="bold_heading">Rebirth:</b><br>
-  <select name="Rebirth_Selection" id="Rebirth_Selection" class="select_text_box" onchange="Update_Raceguild()">
-   <option value="Mortal">Mortal</option>
+  <select name="Rebirth_Selection" id="Rebirth_Selection" class="select_text_box" onchange="Update_RaceList()">
+   <option value="Mortal" selected>Mortal</option>
    <option value="Elder">Elder</option>
    <option value="Ancient">Ancient</option>
    <option value="Eternal">Eternal</option>
@@ -36,16 +36,16 @@
   <tr>
   <td>
   <b class="bold_heading">Race guild levels:</b><br>
-  <select name="Race_guild_levels_Selection" class="select_text_box" id="Race_guild_levels_Selection" onchange= "changeInRaceGuildLvls()">
-   <option value="5">5</option>
+  <select name="Race_guild_levels_Selection" class="select_text_box" id="Race_guild_levels_Selection" onchange="Update_RaceGuild_Skills_Spells()">
+   <option value="5" selected>5</option>
   </select>
   </td>
   </tr>
   <tr>
   <td>
   <b class="bold_heading">Race:</b><br>
-  <select name="Race_Selection" id="Race_Selection" class="select_text_box" onchange="raceSelected(this.value)">
-   <option value="Barsoomian">Barsoomian</option>
+  <select name="Race_Selection" id="Race_Selection" class="select_text_box" onchange="Update_RaceInfo()">
+   <option value="Barsoomian" selected>Barsoomian</option>
    <option value="Brownie">Brownie</option>
    <option value="Catfolk">Catfolk</option>
    <option value="Centaur">Centaur</option>
@@ -77,7 +77,7 @@
    <option value="Tinmen">Tinmen</option>
    <option value="Troll">Troll</option>
    <option value="Valar">Valar</option>
-   <option value="wolfman">Wolfman</option>
+   <option value="Wolfman">Wolfman</option>
    <option value="Zombie">Zombie</option>
   </select>
   </td>
@@ -86,7 +86,7 @@
   <td>
   <b class="bold_heading">Background:</b><br>
   <select name="Background_Selection" id="Background_Selection" class="select_text_box" onchange="Update_Guilds(this.value)">
-   <option value="Civilized">Civilized</option>
+   <option value="Civilized" selected>Civilized</option>
    <option value="Evil religious">Evil religious</option>
    <option value="Good religious">Good religious</option>
    <option value="Magical">Magical</option>
@@ -97,7 +97,8 @@
   <tr>
   <td align="center">
   <br>
-  <input type="button" class="reset_button" value="Reset all" onclick="location.reload()">
+  <input type="button" class="reset_button" value="Reset all" onclick="location.reload(true)"><br><br><br>
+  <input type="button" value="Kutsu Testi() funktiota" onclick="Testi()">
   </td>
   </tr>
   </table>
@@ -112,7 +113,7 @@
     <td>
     <b class="bold_heading">Guilds:</b><br>
     <select name="Guild1_Selection" id="Guild1_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 1)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -134,14 +135,14 @@
     <td valign="top">
     <b class="bold_heading">Lvls:</b><br>
     <select name="Guild1_lvls_Selection" id="Guild1_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 1)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild2_Selection" id="Guild2_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 2)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -162,14 +163,14 @@
     </td>
     <td>
     <select name="Guild2_lvls_Selection" id="Guild2_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 2)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild3_Selection" id="Guild3_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 3)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -190,14 +191,14 @@
     </td>
     <td>
     <select name="Guild3_lvls_Selection" id="Guild3_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 3)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild4_Selection" id="Guild4_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 4)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -218,14 +219,14 @@
     </td>
     <td>
     <select name="Guild4_lvls_Selection" id="Guild4_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 4)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild5_Selection" id="Guild5_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 5)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -246,14 +247,14 @@
     </td>
     <td>
     <select name="Guild5_lvls_Selection" id="Guild5_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 5)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild6_Selection" id="Guild6_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 6)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -274,14 +275,14 @@
     </td>
     <td>
     <select name="Guild6_lvls_Selection" id="Guild6_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 6)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild7_Selection" id="Guild7_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 7)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -302,14 +303,14 @@
     </td>
     <td>
     <select name="Guild7_lvls_Selection" id="Guild7_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 7)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild8_Selection" id="Guild8_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 8)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -330,7 +331,7 @@
     </td>
     <td>
     <select name="Guild8_lvls_Selection" id="Guild8_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 8)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
@@ -346,7 +347,7 @@
     <td>
     <b class="bold_heading">Guilds:</b><br>
     <select name="Guild9_Selection" id="Guild9_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 9)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -368,14 +369,14 @@
     <td>
     <b class="bold_heading">Lvls:</b><br>
     <select name="Guild9_lvls_Selection" id="Guild9_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 9)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild10_Selection" id="Guild10_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 10)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -396,14 +397,14 @@
     </td>
     <td>
     <select name="Guild10_lvls_Selection" id="Guild10_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 10)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild11_Selection" id="Guild11_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 11)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -424,14 +425,14 @@
     </td>
     <td>
     <select name="Guild11_lvls_Selection" id="Guild11_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 11)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild12_Selection" id="Guild12_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 12)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -452,14 +453,14 @@
     </td>
     <td>
     <select name="Guild12_lvls_Selection" id="Guild12_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 12)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild13_Selection" id="Guild13_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 13)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -480,14 +481,14 @@
     </td>
     <td>
     <select name="Guild13_lvls_Selection" id="Guild13_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 13)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
     <tr>
     <td>
     <select name="Guild14_Selection" id="Guild14_Selection" class="select_text_box" onchange="Check_Requiments(this.value, 14)">
-     <option value="None">None</option>
+     <option value="None" selected>None</option>
      <option value="Aelena">Aelena</option>
      <option value="Alchemists">Alchemists</option>
      <option value="Bard">Bard</option>
@@ -508,7 +509,7 @@
     </td>
     <td>
     <select name="Guild14_lvls_Selection" id="Guild14_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 14)">
-     <option value="0">0</option>
+     <option value="0" selected>0</option>
     </select>
     </td>
     </tr>
@@ -536,13 +537,31 @@
     <tr>
     <td valign="top" name="RaceInfoBox" id="RaceInfoBox">
     <b class="bold_heading">Race information:</b><br><br>
-	 	<div id="Race_Name"><b>Race:</b> Barsoomian</div>
-  	<div id="Race_Str"><b>Strength:</b> xxx</div>
-	  <div id="Race_Dex"><b>Dexterity:</b> xxx</div>
-  	<div id="Race_Con"><b>Consitution:</b> xxx</div>
-	  <div id="Race_Int"><b>Intelligence:</b> xxx</div>
-	  <div id="Race_Wis"><b>Wisdom:</b> xxx</div>
-	  <div id="Race_Size"><b>Size:</b> xxx</div>
+  	<!-- Taulukko7 alkaa -->
+  	<table border="0" cellpadding="5">
+  	<tr>
+  	<td><b>Race:</b></td><td id="Race_Name">Barsoomian</td>
+  	</tr><tr>
+  	<td><b>Str:</b></td><td id="Race_Str">63</td>
+  	</tr><tr>
+  	<td><b>Dex:</b></td><td id="Race_Dex">101</td>
+  	</tr><tr>
+  	<td><b>Con:</b></td><td id="Race_Con">77</td>
+  	</tr><tr>
+  	<td><b>Int:</b></td><td id="Race_Int">52</td>
+  	</tr><tr>
+  	<td><b>Wis:</b></td><td id="Race_Wis">42</td>
+  	</tr><tr>
+  	<td><b>Size:</b></td><td id="Race_Size">50</td>
+  	</tr><tr>
+  	<td><b>Exp:</b></td><td id="Race_Exprate">80</td>
+  	</tr><tr>
+  	<td><b>Skill:</b></td><td id="Race_Skillmax">74</td>
+  	</tr><tr>
+  	<td><b>Spell:</b></td><td id="Race_Spellmax">60</td>
+  	</tr>
+  	</table>
+  	<!-- Taulukko7 loppuu -->
 	  </td>
 	  </tr>
 	  </table>
@@ -556,19 +575,50 @@
  </tr>
  <tr>
  <td>
-  <!-- Taulukko7 alkaa -->
-  <table border="0" cellpadding="10" bgcolor="silver" width="100%">
+  <!-- Taulukko8 alkaa -->
+  <table id= "skillSpell" border="0" cellpadding="10" bgcolor="silver" width="100%">
   <tr>
   <td id= "skilleja">
-  <b>Skills and Spells:</b>
-    <!-- race guild info tähän:-->
-    <div id= "raceInfo"></div>
-    <!-- kiltan infot tähän: -->
-    <div id= "guildInfot"></div>
+    
+  <!-- Taulukko X alkaa -->
+  <table border="0" width="100%">
+  <tr>
+  <td>
+  <b class="bold_heading" id="RaceGuild_Title">Race guild name...</b>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <!-- Taulukko rotu killan skills & spells alkaa -->
+  <table id="RaceGuild_Skills_Spells" border="0" cellpadding="10">
+  <tr><td>
+  Race guild skill & spell list...
+  </td></tr>
+  </table>
+  <!-- Taulukko rotu killan skills & spells loppuu -->
   </td>
   </tr>
   </table>
-  <!-- Taulukko7 loppuu -->
+  <!-- Taulukko X loppuu -->
+
+  </td>
+  </tr>
+  </table>
+  <!-- Taulukko8 loppuu -->
+ </td>
+ </tr>
+ <tr>
+ <td>
+ <!-- Taulukko11 alkaa -->
+ <!-- Kiltojen skillit ja spellit-->
+ <table id= 'guildName'border="0" cellpadding="10" bgcolor="silver" width="100%"></table>
+ <table id= "guildInfot" class= "grid_container" border="0" cellpadding="10" bgcolor="silver" width="100%">
+ <tr>
+ <td>
+ </td>
+ </tr>
+ </table>
+ <!-- Taulukko11 loppuu -->
  </td>
  </tr>
  </table>
@@ -580,16 +630,10 @@
 <!-- PAA taulukko loppuu -->
 
 </body>
-<script src="guilds.js">
-</script>  
+<script src="data.js">
+</script>
 <script src="guildFunctions.js">
 </script>  
-<script src="raceGuilds.js">
-</script>
-<script src="raceGuildFunctions.js">
-</script>
 <script src="RaceBackgroundGuilds.js">
-</script>
-<script src="reincsim.js">
 </script>
 </html>

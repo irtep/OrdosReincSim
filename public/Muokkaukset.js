@@ -97,3 +97,77 @@
 /*
   29 kesäkuuta 2019, klo 21:18: Muokkasin hieman ulkoasua style asetuksilla / ordos
 */
+/*
+  30 kesäkuuta 2019, klo 12:27: Lisäsin data.js tiedoston johon laitoin rotu statit datan / ordos
+*/
+/*
+  30 kesäkuuta 2019, klo 13:48: Lisäsin Update_Raceinfo() funktion joka päivittää rotu statit, eli seuraavia tiedostoja on muokattu
+  (reincsim.html) (RaceBackgroundGuilds.js) (data.js) / ordos
+*/
+/*
+  30 kesäkuuta 2019, klo 20:25: Lisäsin reincsim.html tiedostoon esimerkki pohjan rotukillan skills & spells.
+  Lisäsin myös alemmas Kiltojen skills & spells osion... / ordos
+*/
+/*
+  30 kesäkuuta 2019, klo 23:17: Muotoilin hieman esimerkki pohjaa joka näyttää paremmalta, jos siihen saa yhdistettyä koodin jotenkin / ordos
+*/
+/*
+  1 heinäkuuta 2019, klo 19:28. Lisäsin Testi() funktion ja html tiedostoon kohde taulukon josta voi myöhemmin ruveta kehittämään
+  rotu kiltojen skills & spells taulukkoa / ordos
+*/
+/*
+  2 heinäkuuta 2019, klo 9:33. Päivitin Testi() funktion ja html sivun. Napin painalluksella rotu killan tiedot vaihtuvat ja toistaiseksi
+                               Barsoomian ja Brownie on data.js tiedostossa ja toiminta rajoittuu niihin, default antaa tyhjän tulostuksen.
+                    klo 10:26. Catfolk ja Centaur lisätty data.js ja Testi() funktioon.
+                    klo 11:49. Muokkasin uusiksi rotu killan datan ja toistaiseksi barsoomian ainoastaan toiminnassa.
+                    klo 12:26. Centaur asti toiminnassa. 
+                    klo 14:08. Draconian asti toiminnassa.
+                    klo 17:36. Giant asti toiminnassa.
+                    klo 18:44. Leprechaun asti toiminnassa. 
+                    klo 21:47. Kaikki rotu killan data valmis ja Testi() funktion päivitetty. / ordos
+*/
+/*
+  3 heinäkuuta 2019, klo 10:41. Rotu killat päivitetty data.js tiedostoon ja seuraavia myös on muokattu RaceBackgroundGuilds.js
+                                ja reincsim.html. Mahdollista lisäystä ("Barsoomian", "title", "The Monkey") rotu killan 
+                                dataan suunnitelmissa. 
+                     klo 11:00. Barsoomian rotu killan nimi (päivittyy napista) ainoastaa toiminassa.
+                     klo 12:36. Rotu killan nimet toiminnassa.
+                     klo 13:06. Taas string ja numero ei sovi yhteen ja tominta lakkasi mutta Number() tekee taikojaan ja taas toimii.
+                     klo 15:35. Sain kun sainkin toimimaan sivun lautauksen yhteydessä tulee oletus rodun kilta ja rotua
+                                vaihdettaessa kilta päivittuu omalle paikallensa.
+                     klo 17:01. Nimesin funktioita (RaceBackgroundGuilds.js) tiedostossa paremmin ja lisäsin funktioille toiminta
+                                selosteet. Myös päivitin funktio kutsut html tiedostoon.
+                     klo 17:59. Aikani stylen kanssa takutessani sain valinta boxit muutettua rotu killan skills & spells osioon.
+                     klo 19:38. Tein skilleille ja spelleille hyppyloopit 5 välein, joka tulostaa numeroboxeihin luvut. / ordos
+*/
+/*
+  4 heinäkuuta 2019, klo 11:18. Lisäsin rotukillan skills & spells osioon exp laatikot tulostukseen.
+                     klo 12:11. Muokkasin rotukiltojen taulukko tulostusta että TD elementit on TR elementtien sisällä.
+                                Tämä siksi että toisissa selaimissa näkyisi oikein asettelut.
+                     klo 16:48. Laitoin total cost laatikot ja stylesin niitä hieman. 
+                     klo 18:05. Lisäsin Humanille skill & spell costi listan data tiedostoon joka on testi vaiheessa. 
+                                Kaikkia muita rotuja voi verrata kertoimella koska human skill & spell costi on 100%.
+                                Esimerkiksi Barsoomian skill=118%	ja spell=165% costit...
+                     klo 18:58. Lisäsin Testi() funktion ja painikkeen sille. Toistaiseksi kehitys vaiheessa (ideoita otetaan vastaan)
+                                ja toimii "Attack" ja "5" arvoilla, aika kehnolla koodilla.
+                     klo 19:51. Taikalooppi teki sen taas! Toiminta alustavasti napin painalluksella. 
+                     klo 22:44. Nyt Attack, Bargain ja Ceremony exp costit datassa.
+                     klo 23:13. Nyt Attack, Bargain, Ceremony, Fire building ja First aid exp costit datassa. / ordos
+*/
+/*
+  5 heinäkuuta 2019, klo 6:25. Human rotu killan skillit & spellit toiminassa. Taikaloopista uupuu vielä rotuerotin joka näyttäisi
+                               oikean rodun skill & spell tiedot mikä on valittuna.
+                    klo 10:45. Nyt pitäisi rotu killan skillit & spellit exp määrä tulla oikein.
+                    klo 12:40. Lisäsin ExpKerroin taulukon data tiedostoon ja pävitin Testi() funktion. Nyt eri roduilla on
+                               eri exp kertoimet ja tulostuvat ok. Seuraava vaihe ynnätä funktio eri nimellä html tiedostoon.
+                    klo 15:48. Treenav killan 1x skill & spell datassa.
+                    klo 17:08. Muokkasin html tiedostoa ja lisäsin force haun serveriltä reset napista painaessa, kun jossakin
+                               selain & käyttöjärjestelmissä ei reset nappi palauttanut oletuksia.
+                    klo 20:33. Päivitin Races taulukon data.js tiedostossa, exprate,skillmax ja spellmax lisätty.
+                    klo 20:51. Päivitin html ja Update_RaceInfo() funktion, exprate,skillmax ja spellmax tulostuvat ok. / ordos
+
+ 6 heinäkuuta 2019, kello 15:09: Siivoilin pois noita jota ei tarvinnut (mun vanhoissa koodeissa) ja tein kiltoille 
+   toimivan function (pitää vielä viilata ulkonäköä yhdenmukaiseksi racekiltojen kanssa kun nyt vähän hassun näkönen.)
+   treenav ja navigator toimii jo valintoina, muut ei vielä. (navigatoriin ei oo kaikkia skillejä laitettu vielä)
+   Kiltoja voi lisätä data kohtaan tähän tapaan miten rupesin navigator kiltaa laittaa data.js kohtaan: / caped
+*/
