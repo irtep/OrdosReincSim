@@ -95,7 +95,11 @@
  var TzarakkLvls = 0;
  var TzarakkPosition = 0;
  
- function Update_Raceguild()
+ // ###################################
+ // # Funktio päivittää rotulistan    #
+ // # kun Rebirth valintaa vaihdetaan #
+ // ###################################
+ function Update_RaceList()
  {
   // Mortal on valittu
   if ( document.getElementById('Rebirth_Selection')[document.getElementById('Rebirth_Selection').selectedIndex].value == "Mortal" )
@@ -297,10 +301,54 @@
    document.getElementById('Race_Selection').options[42] = new Option('Wolfman','Wolfman');
    document.getElementById('Race_Selection').options[43] = new Option('Zombie','Zombie');
   }
+  // Kutsutaan Update_RaceInfo() funktiota joka päivittää rodun statit
+  Update_RaceInfo();
+  // Kutsutaan Update_RaceGuild_Skills_Spells() funtiota joka päivittää rotukillan skills & spells
+  Update_RaceGuild_Skills_Spells();
+  // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
+  Calculate_Levels();
+ }
+ 
+ // ################################
+ // # Funktio päivittää rotu infon #
+ // # kun Race_Selection valintaa  #
+ // # vaihdetaan (Races = data.js) #
+ // ################################
+ function Update_RaceInfo()
+ {
+  var TempRotu = document.getElementById('Race_Selection')[document.getElementById('Race_Selection').selectedIndex].value;
+  for (var TempLooppi = 0; TempLooppi < Races.length; TempLooppi++)
+  {
+   if (TempRotu === Races[TempLooppi].name)
+   {
+    document.getElementById('Race_Name').innerHTML = Races[TempLooppi].name;
+    document.getElementById('Race_Str').innerHTML = Races[TempLooppi].strength;
+	  document.getElementById('Race_Dex').innerHTML = Races[TempLooppi].dexterity;
+	  document.getElementById('Race_Con').innerHTML = Races[TempLooppi].constitution;
+	  document.getElementById('Race_Int').innerHTML = Races[TempLooppi].intelligence;
+	  document.getElementById('Race_Wis').innerHTML = Races[TempLooppi].wisdom;
+	  document.getElementById('Race_Size').innerHTML = Races[TempLooppi].size;
+    document.getElementById('Race_Exprate').innerHTML = Races[TempLooppi].exprate;
+	  document.getElementById('Race_Skillmax').innerHTML = Races[TempLooppi].skillmax;
+	  document.getElementById('Race_Spellmax').innerHTML = Races[TempLooppi].spellmax;
+   }
+  }
+  // Kutsutaan Update_RaceGuild_Skills_Spells() funktiota joka päivittää Rotukillan skillit & spellit
+  Update_RaceGuild_Skills_Spells();
  }
 
+ // ##################################
+ // # Funktio tarkistaa eri kiltojen #
+ // # vaatimukset ja lisää/poistaa   #
+ // # valitun muihin listoihin       #
+ // ##################################
  function Check_Requiments(kilta, kohta)
  {
+   
+   //guildin skillien ja spellejen functio:
+   // puolen sekunnin päästä, niin ehtii vaihtua tuo kiltanumero
+   setTimeout( () => {changeInGuildLvls(kilta, kohta); }, 500);
+   
   // #########################################
   // # Tilojen tarkistus LOOP & CASE (alkaa) #
   // #########################################
@@ -4466,8 +4514,8 @@
   // # KILTA: TZARAKK (loppuu) #
   // ###########################
 
-  // Kutsutaan funktiota Calculate_levels()
-  Calculate_levels();
+  // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
+  Calculate_Levels();
   // #########################################
   // # Alert message näyttää listan jos      #
   // # kilta on valittuna lista laatikossa.  #
@@ -4487,11 +4535,12 @@
         '\nSquire = ' + SquireStatus + ' | Tarmalen = ' + TarmalenStatus + ' | Templar = ' + TemplarStatus + ' | Tiger = ' + TigerStatus +
         '\nTreenav = ' + TreenavStatus + ' | Tzarakk = ' + TzarakkStatus); */
  
- // lisää spellit ja skillit näkyville:
- // functio löytyy guildFunctions.js tiedostosta:
- showSkillsAndSpells(kilta, kohta);
  }
  
+ // #####################################
+ // # Funktio päivittää kiltalistat kun #
+ // # Background valintaa vaihdetaan    #
+ // #####################################
  function Update_Guilds(background)
  {
   // Nollataan kilta levelit
@@ -4683,11 +4732,20 @@
 	apu1++;
    }
   }
-  Calculate_levels();
+  // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
+  Calculate_Levels();
  }
- 
+
+ // ####################################
+ // # Funktio tarkistaa sen hetkiset   #
+ // # valitut killat ja levelit ja     #
+ // # laittaa väliaikaisiin muuttujiin #
+ // ####################################
  function Update_Levels(leveli, kohde)
  {
+   // Kiltojen skillien ja spellien näytön kutsuminen:
+   changeInGuildLvls(leveli, kohde);
+   
   var TempGuild = "";
   var TempLevel = "";
   // Katsotaan valinan kilta leveli ja sen hetkinen kilta
@@ -4895,13 +4953,16 @@
     TzarakkLvls = Number(TempLevel);
 	break;
   }
-  // Kutsutaan funktiota
-  Calculate_levels();
-  // päivitetään mahdolliset annetut skill/spell listat
-  changeInGuildLvls(leveli, kohde);
+  // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
+  Calculate_Levels();
  }
- 
- function Calculate_levels()
+
+ // #########################################
+ // # Funktio laskee apu muuttujien avulla  #
+ // # kaikki valitut kiltojen levelit       #
+ // # yhteen ja tulostaa sen TotalLevelsBox #
+ // #########################################
+ function Calculate_Levels()
  {
   // Alku muuttujat
   var Race_lvls = 0;
@@ -4913,3 +4974,372 @@
   // Tulostetaan Total_lvls
   document.getElementById('TotalLevelsBox').innerHTML = "<b>Levels:</b> " + Total_lvls;
  }
+
+  // ####################################
+  // # Funktio hakee tiedot (data.js)   #
+  // # tiedostosta valitun rodun        #
+  // # perusteella ja tulostaa taulukon #
+  // # jossa on rotukillan nimi, skills #
+  // # ja spells (nolla -> max)         #
+  // ####################################
+  function Update_RaceGuild_Skills_Spells()
+  {
+   // Asetetaan muuttujat
+   var TempSkills1 = [];
+   var TempSkills2 = [];
+   var TempSpells1 = [];
+   var TempSpells2 = [];
+   var Teksti1 = "";
+   var Teksti2 = "";
+   var Arvo1 = 0;
+   var Arvo2 = 0;
+   var Looppi1 = 0;
+   // Haetaan Rotu ja Level laatikoista
+   var ValittuRotu = document.getElementById('Race_Selection')[document.getElementById('Race_Selection').selectedIndex].value;
+   var ValittuLevel = document.getElementById('Race_guild_levels_Selection')[document.getElementById('Race_guild_levels_Selection').selectedIndex].value;
+   // Tämä tyhjää sisällön valitusta kohteesta ja luo aloitus TR elementin
+   document.getElementById('RaceGuild_Skills_Spells').innerHTML = "";
+   var tr0 = document.createElement('tr');
+   tr0.id = "RaceGuild_Skills_SpellsX";
+   document.getElementById('RaceGuild_Skills_Spells').appendChild(tr0);
+   // Taika looppi kerää tietoja taulukosta ja asettaa niitä apu taulukkoihin
+   for (var TempLooppi = 0; TempLooppi < RaceGuilds.length; TempLooppi++)
+   {
+     if (ValittuRotu === RaceGuilds[TempLooppi][0])
+     {
+      if (RaceGuilds[TempLooppi][1] === "title")
+	    {		
+	     document.getElementById('RaceGuild_Title').innerHTML = RaceGuilds[TempLooppi][2];
+	    } 
+      if (RaceGuilds[TempLooppi][1] === "skill")
+	    {		
+	     TempSkills1.push(RaceGuilds[TempLooppi][2]);
+	     TempSkills2.push(RaceGuilds[TempLooppi][Number(ValittuLevel) + 2]);
+	    } 
+      if (RaceGuilds[TempLooppi][1] === "spell")
+	    {		
+	     TempSpells1.push(RaceGuilds[TempLooppi][2]);
+	     TempSpells2.push(RaceGuilds[TempLooppi][Number(ValittuLevel) + 2]);
+	    }   	
+     }
+    }
+   	// Verrataan kumpi on pitempi ja sen mukaan tehdään looppi
+	  if ( TempSkills1.length < TempSpells1.length )
+	  {
+		  Looppi1 = TempSpells1.length;   
+	  }
+	  else
+	  {
+		  Looppi1 = TempSkills1.length;
+	  }
+    // Luodaan otsikot Skills ja Spells
+    var td1 = document.createElement('td');
+    td1.id = "otsikko1";
+	document.getElementById('RaceGuild_Skills_SpellsX').appendChild(td1);
+    document.getElementById('otsikko1').innerHTML = "<b>Skills</b>";   
+    var td2 = document.createElement('td');
+	document.getElementById('RaceGuild_Skills_SpellsX').appendChild(td2);
+    var td3 = document.createElement('td');
+	td3.id = "otsikko2";
+	document.getElementById('RaceGuild_Skills_SpellsX').appendChild(td3);
+	document.getElementById('otsikko2').innerHTML = "<b>Exp</b>";
+	var td4 = document.createElement('td');
+    td4.id = "otsikko3";
+	document.getElementById('RaceGuild_Skills_SpellsX').appendChild(td4);
+	document.getElementById('otsikko3').innerHTML = "<b>Spells</b>";
+	var td5 = document.createElement('td');
+	document.getElementById('RaceGuild_Skills_SpellsX').appendChild(td5);
+	var td6 = document.createElement('td');
+	td6.id = "otsikko4";
+	document.getElementById('RaceGuild_Skills_SpellsX').appendChild(td6);
+	document.getElementById('otsikko4').innerHTML = "<b>Exp</b>";
+	var tr1 = document.createElement('tr');
+	tr1.id = "RaceGuild_Skills_Spells0";
+    document.getElementById('RaceGuild_Skills_Spells').appendChild(tr1);
+	  // for lauseke joka tekee muutaman kerran taulukkoa
+    for ( var x = 0; x < Looppi1; x++)
+    {	   
+      if ( TempSkills1.includes("None") == false && TempSkills1[x] != null)
+	    {    
+      // Tämä luo taulukkoon tekstiä ja valintaboxin (SKILLI)   
+      // Luo TD elementin ja laittaa sille ID
+      var td1 = document.createElement('td');
+      td1.id = "skilli" + x + "text";
+      document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
+	    Teksti1 = TempSkills1[x];
+      document.getElementById('skilli' + x + 'text').innerHTML = Teksti1;
+	    // Luo TD elementin ja laittaa sille ID
+      var td2 = document.createElement('td');
+      td2.id = "skilli" + x + "nro";
+      document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td2);
+	    Arvo1 = TempSkills2[x];
+	    // Luo SELECT elementin ja laittaa ID ja OPTION siihen
+      var select1 = document.createElement('select');
+      select1.id = "skilli" + x + "valinta";
+      select1.classList.add("select_number_box");
+      document.getElementById('skilli' + x + 'nro').appendChild(select1);
+      // Hyppyloopin 1 muuttujat
+      var hyppylooppi1 = 0;
+      var hyppaykset1 = 0;
+      var kerrat1 = 0;
+      // Jaetaan viidellä MAX arvo niin saadaan kerrat
+	    kerrat1 = Arvo1 / 5;
+	    while (hyppylooppi1 < kerrat1)
+	    {
+		    var optionX = document.createElement('option');
+			optionX.text = hyppaykset1;
+		    document.getElementById('skilli' + x + 'valinta').appendChild(optionX);
+			hyppaykset1 = hyppaykset1 + 5;
+		    hyppylooppi1++;
+	    }
+		var option1 = document.createElement('option');
+		option1.text = Arvo1;
+		document.getElementById('skilli' + x + 'valinta').appendChild(option1);
+		// Luo TD elementin ja laittaa sille ID
+	    var td3 = document.createElement('td');
+        td3.id = "skillicost" + x + "text";
+        document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td3);
+		document.getElementById('skillicost' + x + 'text').innerHTML = '<div class="total_text_box">0</div>';
+	    }
+	    else // Jos ei löydy skillejä luodaa tyhjää taulukkoa
+	    {
+			var td1 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
+			var td2 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td2);
+			var td3 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td3);
+	    }
+        if ( TempSpells1.includes("None") == false && TempSpells1[x] != null )
+	    {
+        // Tämä luo taulukkoon tekstiä ja valintaboxin (SPELLI)   
+        // Luo TD elementin ja laittaa sille ID
+        var td1 = document.createElement('td');
+        td1.id = "spelli" + x + "text";
+        document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
+	    Teksti2 = TempSpells1[x];
+	    document.getElementById('spelli' + x + 'text').innerHTML = Teksti2;
+		// Luo TD elementin ja laittaa sille ID
+        var td2 = document.createElement('td');
+        td2.id = "spelli" + x + "nro";
+        document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td2);
+	    Arvo2 = TempSpells2[x];
+        // Luo SELECT elementin ja laittaa ID ja OPTION siihen
+        var select1 = document.createElement('select');
+        select1.id = "spelli" + x + "valinta";
+        select1.classList.add("select_number_box");
+        document.getElementById('spelli' + x + 'nro').appendChild(select1);
+        // Hyppyloopin 2 muuttujat
+        var hyppylooppi2 = 0;
+	    var hyppaykset2 = 0;
+	    var kerrat2 = 0;
+        // Jaetaan viidellä MAX arvo niin saadaan kerrat
+	    kerrat2 = Arvo2 / 5;
+	    while (hyppylooppi2 < kerrat2)
+	    {
+			var optionX = document.createElement('option');
+            optionX.text = hyppaykset2;
+		    document.getElementById('spelli' + x + 'valinta').appendChild(optionX);
+            hyppaykset2 = hyppaykset2 + 5;
+		    hyppylooppi2++;
+	    }
+        var option1 = document.createElement('option');
+        option1.text = Arvo2;
+        document.getElementById('spelli' + x + 'valinta').appendChild(option1);
+		// Luo TD elementin ja laittaa sille ID
+	    var td3 = document.createElement('td');
+        td3.id = "spellicost" + x + "text";
+        document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td3);
+		document.getElementById('spellicost' + x + 'text').innerHTML = '<div class="total_text_box">0</div>';
+		}
+	    else // Jos ei löydy spellejä luodaa tyhjää taulukkoa
+	    {
+			var td1 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
+			var td2 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td2);
+			var td3 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td3);
+	    }
+		// Luodaan rivin vaihto elementti
+		var apu = 0;
+		apu = x + 1;
+		var tr1 = document.createElement('tr');
+		tr1.id = "RaceGuild_Skills_Spells" + apu;
+		document.getElementById('RaceGuild_Skills_Spells').appendChild(tr1);
+		if ( TempSkills1.length > TempSpells1.length && TempSkills1.length == x + 1)
+		{
+			var tr2 = document.createElement('tr');
+			tr2.id = "RaceGuild_Skills_Spells" + apu;
+			document.getElementById('RaceGuild_Skills_Spells').appendChild(tr2);
+		    var td1 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td1);
+			var td2 = document.createElement('td');
+			td2.id = "textcost1";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td2);
+			var td3 = document.createElement('td');
+			td3.id = "totaltextbox1";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td3);
+		    var td4 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td4);
+			var td5 = document.createElement('td');
+			td5.id = "textcost2";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td5);
+			var td6 = document.createElement('td');
+			td6.id = "totaltextbox2";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td6);
+			document.getElementById('textcost1').innerHTML = "<b>Total cost</b>";
+			document.getElementById('textcost2').innerHTML = "<b>Total cost</b>";
+			document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box"><b>0</b></div>';
+			document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box"><b>0</b></div>';
+		}
+		if ( TempSkills1.length < TempSpells1.length && TempSpells1.length == x + 1)
+		{
+			var tr2 = document.createElement('tr');
+			tr2.id = "RaceGuild_Skills_Spells" + apu;
+			document.getElementById('RaceGuild_Skills_Spells').appendChild(tr2);
+		    var td1 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td1);
+			var td2 = document.createElement('td');
+			td2.id = "textcost1";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td2);
+			var td3 = document.createElement('td');
+			td3.id = "totaltextbox1";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td3);
+		    var td4 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td4);
+			var td5 = document.createElement('td');
+			td5.id = "textcost2";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td5);
+			var td6 = document.createElement('td');
+			td6.id = "totaltextbox2";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td6);
+			document.getElementById('textcost1').innerHTML = "<b>Total cost</b>";
+			document.getElementById('textcost2').innerHTML = "<b>Total cost</b>";
+			document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box"><b>0</b></div>';
+			document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box"><b>0</b></div>';
+		}
+		if ( TempSkills1.length == TempSpells1.length && (TempSkills1.length == x + 1 || TempSpells1.length == x + 1) )
+		{
+			var tr2 = document.createElement('tr');
+			tr2.id = "RaceGuild_Skills_Spells" + apu;
+			document.getElementById('RaceGuild_Skills_Spells').appendChild(tr2);
+		    var td1 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td1);
+			var td2 = document.createElement('td');
+			td2.id = "textcost1";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td2);
+			var td3 = document.createElement('td');
+			td3.id = "totaltextbox1";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td3);
+		    var td4 = document.createElement('td');
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td4);
+			var td5 = document.createElement('td');
+			td5.id = "textcost2";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td5);
+			var td6 = document.createElement('td');
+			td6.id = "totaltextbox2";
+			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td6);
+			document.getElementById('textcost1').innerHTML = "<b>Total cost</b>";
+			document.getElementById('textcost2').innerHTML = "<b>Total cost</b>";
+			document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box"><b>0</b></div>';
+			document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box"><b>0</b></div>';
+		}
+     }
+     // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
+     Calculate_Levels();
+  }
+
+   function Testi()
+  {
+
+	  var TempApuRotu = document.getElementById('Race_Selection')[document.getElementById('Race_Selection').selectedIndex].value;
+	  var TempApuKerroin1 = 1;
+	  var TempApuKerroin2 = 1;
+	  // Taika looppi (EXP) tekee taas ihmeitään!
+	  for ( var Looppi = 0; Looppi < ExpKerroin.length; Looppi++ )
+	  {
+		  if ( TempApuRotu === ExpKerroin[Looppi].name )
+		  {
+			  TempApuKerroin1 = ExpKerroin[Looppi].skill;
+			  TempApuKerroin2 = ExpKerroin[Looppi].spell;
+		  }
+	  }
+	  var x1 = 0;
+	  var TempApuLuku1 = 0;
+	  // Tehdään kunnes ei löydy elementtejä enää
+	  while ( !!document.getElementById('skilli' + x1 + 'text') == true )
+	  {
+		var TempApuSkilli = document.getElementById('skilli' + x1 + 'text').innerHTML;
+		var TempApuNro1 = document.getElementById('skilli' + x1 + 'valinta')[document.getElementById('skilli' + x1 + 'valinta').selectedIndex].value;
+		var TempApuJako1 = TempApuNro1 / 5;
+		var TempApuDesimaali1 = TempApuJako1 - Math.round(TempApuJako1);
+		// Taika looppi (SKILL) tekee taas ihmeitään !
+		for (var TempLooppi1 = 0; TempLooppi1 < Human.length; TempLooppi1++)
+		{
+			// Katsotaan skilli kerrallaan ja haetaa data joka tulostetaan boxeihin
+			if ( TempApuSkilli === Human[TempLooppi1][0])
+			{
+				if ( TempApuJako1 == 0 )
+				{
+					document.getElementById('skillicost' + x1 + 'text').innerHTML = '<div class="total_text_box">0</div>';
+				}
+				else
+				{
+					// Kerrotaan jakojäännöksellä jos semmoinen on olemassa
+					var TempApuSkilli2 = Human[TempLooppi1][Math.round(TempApuJako1)];
+					if ( TempApuDesimaali1 > 0 )
+					{
+						TempApuSkilli2 = TempApuSkilli2 * (TempApuDesimaali1 + 1);
+					}
+					// Lasketaa rotu kohtaisella kertoimella
+					TempApuSkilli2 = TempApuSkilli2 * TempApuKerroin1;
+					document.getElementById('skillicost' + x1 + 'text').innerHTML = '<div class="total_text_box">' + Math.round(TempApuSkilli2) + '</div>';
+					TempApuLuku1 = TempApuLuku1 + Math.round(TempApuSkilli2);
+					document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box"><b>' + TempApuLuku1 + '</b></div>';
+				}
+			}
+		}
+ 		x1++;  
+	  }
+	  var x2 = 0;
+	  var TempApuLuku2 = 0;
+	  // Tehdään kunnes ei löydy elementtejä enää
+	  while ( !!document.getElementById('spelli' + x2 + 'text') == true )
+	  {
+		var TempApuSpelli = document.getElementById('spelli' + x2 + 'text').innerHTML;
+		var TempApuNro2 = document.getElementById('spelli' + x2 + 'valinta')[document.getElementById('spelli' + x2 + 'valinta').selectedIndex].value;
+		var TempApuJako2 = TempApuNro2 / 5;
+		var TempApuDesimaali2 = TempApuJako2 - Math.round(TempApuJako2);
+		// Taika looppi (SPELL) tekee taas ihmeitään !
+		for (var TempLooppi2 = 0; TempLooppi2 < Human.length; TempLooppi2++)
+		{
+			// Katsotaan skilli kerrallaan ja haetaa data joka tulostetaan boxeihin
+			if ( TempApuSpelli === Human[TempLooppi2][0])
+			{
+				if ( TempApuJako2 == 0 )
+				{
+					document.getElementById('spellicost' + x2 + 'text').innerHTML = '<div class="total_text_box">0</div>';
+				}
+				else
+				{
+					var TempApuSpelli2 = Human[TempLooppi2][Math.round(TempApuJako2)];
+					if ( TempApuDesimaali2 > 0 )
+					{
+						TempApuSpelli2 = TempApuSpelli2 * (TempApuDesimaali2 + 1);
+					}
+					document.getElementById('spellicost' + x2 + 'text').innerHTML = '<div class="total_text_box">' + Math.round(TempApuSpelli2) + '</div>';
+					TempApuLuku2 = TempApuLuku2 + (Math.round(TempApuSpelli2) * TempApuKerroin2);
+					document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box"><b>' + TempApuLuku2 + '</b></div>';
+				}
+			}
+		}
+ 		x2++;  
+	  }
+  }
+  
+  
+  // Sivun ladattua kutsutaan Update_RaceGuild_Skills_Spells() funktiota joka päivittää Rotukillan skillit & spellit
+  window.onload = (()=> { Update_RaceGuild_Skills_Spells(); });
+  
+ 
