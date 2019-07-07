@@ -171,3 +171,14 @@
    treenav ja navigator toimii jo valintoina, muut ei vielä. (navigatoriin ei oo kaikkia skillejä laitettu vielä)
    Kiltoja voi lisätä data kohtaan tähän tapaan miten rupesin navigator kiltaa laittaa data.js kohtaan: / caped
 */
+/*
+  6 heinäkuuta 2019, klo 19:41. Lisäsin muutaman Human taulukkoon ja pitäisi kai tuumia miten toteuttaisi muiden rotujen eri
+                                Racial skill&spell max ylitykset, löytyisikö jokin toistuva kaava tai jotain? Alustavasti
+                                ExpKerroin taulukossa on rotujen eri skill&spell kertoimet mutta piisaako se ainoastaan? / ordos
+*/
+/*
+  7 heinäkuuta 2019, klo 12:08. Tein esimerkkitaulukon html tiedostoon että jotenkin noin tekis killoille omansa. Seuraavaksi alan
+                                muokkaamaan data.js tiedostossa Human taulukkoa ja oletuksena human spell costi ois myös 100% joten
+                                costit ois sen mukasia ja myöhemmin keksiä kaava raciaalin skill&spell ylitykseen jokaiselle rodulle
+                                omansa ja miten sen toteuttais... / ordos
+*/
