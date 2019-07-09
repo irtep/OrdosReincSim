@@ -166,3 +166,9 @@ footer {
   
   cellPadding = 10;
 }
+
+/*  widthi rajotin*/
+.nameOfSkill {
+  
+  width: 250px;
+}

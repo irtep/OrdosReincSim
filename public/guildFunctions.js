@@ -54,7 +54,7 @@ function showSkillsAndSpells(kilta, kohta) {
   
   // ensiksi otsikot:
   guildInfo.innerHTML = guildInfo.innerHTML +
-  '<table class= "guildTable"><tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
+  '<table class= "guildTable" border = "1"><tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
   '<tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">Spells</td><td></td><td class= "strongFont">Exp</td>';
   
   // katotaas monta riviä tarvitaan:
@@ -88,7 +88,7 @@ function showSkillsAndSpells(kilta, kohta) {
       const nameOfSelectOpt = 'skillPercent'+withoutSpaces;
       skillOnTurn = nameOfSelectOpt;
       
-      skillRow = '<tr><td style= "width: 200px">' + skills[i].name + '</td><td>'+ 
+      skillRow = '<tr><td class= "nameOfSkill">' + skills[i].name + '</td><td>'+ 
         // skillin prosenttivalikko:
         '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td>'+
         // expCost box
@@ -114,11 +114,11 @@ function showSkillsAndSpells(kilta, kohta) {
       const nameOfSelectOpt = 'spellPercent'+withoutSpacesSpell;
       spellOnTurn = nameOfSelectOpt;
       
-      spellRow = '<td style= "width: 200px">' + spells[i].name + '</td><td>'+ 
+      spellRow = '<td class= "nameOfSkill">' + spells[i].name + '</td><td>'+ 
         // spellin prosenttivalikko:
         '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td>'+
         // expCost box
-        '<td><div id= "total'+withoutSpacesSpell+'" class= "total_text_box totalSpells">0</div></td></tr></table>';
+        '<td><div id= "total'+withoutSpacesSpell+'" class= "total_text_box totalSpells">0</div></td></tr>';
     } else { 
       
       spellRow = '</tr>';
