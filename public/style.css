@@ -84,10 +84,6 @@ footer {
   grid-column: 1;
   grid-row: 2;  
 } */
-/*skillien ja spellien taulukko*/
-#skillSpell {
-  
-}
 /* Lisäsin tämmöisen reset nappula stylen joka aluksi on vain reincsim.html tiedostossa...
    Jatkossa voidaa sopia aletaanko tätä style tiedostoa käyttämään ja mitä hienouksia tehdään / ordos */
 
@@ -161,41 +157,12 @@ footer {
   background-color: #f1f1f1;
 }
 
-/* kiltojen skilleille ja spelleille järjestys, ei vielä valmis */
-/*
-.grid_container {
+.strongFont {
   
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
+  font-weight: bold;
 }
 
-.first_row {
+.guildTable {
   
-  grid_row: 1;
+  cellPadding = 10;
 }
-
-.second_row {
-  
-  grid_row: 2;
-}
-.first_column {
-  
-  grid_column: 1;
-}
-.second_column {
-  
-  grid_column: 2;
-}
-.third_column {
-  
-  grid_column: 3;
-}
-.fourth_column {
-  
-  grid_column: 4;
-}
-.fifth_column {
-  
-  grid_column: 5;
-}
-*/

@@ -4743,8 +4743,6 @@
  // ####################################
  function Update_Levels(leveli, kohde)
  {
-   // Kiltojen skillien ja spellien näytön kutsuminen:
-   changeInGuildLvls(leveli, kohde);
    
   var TempGuild = "";
   var TempLevel = "";
@@ -4955,6 +4953,9 @@
   }
   // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
   Calculate_Levels();
+   // Kiltojen skillien ja spellien näytön kutsuminen:
+   changeInGuildLvls(leveli, kohde);
+
  }
 
  // #########################################
@@ -5076,6 +5077,7 @@
 	    // Luo SELECT elementin ja laittaa ID ja OPTION siihen
       var select1 = document.createElement('select');
       select1.id = "skilli" + x + "valinta";
+      select1.setAttribute("onchange", "Calculate_RaceGuild_ExpCost()");
       select1.classList.add("select_number_box");
       document.getElementById('skilli' + x + 'nro').appendChild(select1);
       // Hyppyloopin 1 muuttujat
@@ -5127,6 +5129,7 @@
         // Luo SELECT elementin ja laittaa ID ja OPTION siihen
         var select1 = document.createElement('select');
         select1.id = "spelli" + x + "valinta";
+        select1.setAttribute("onchange", "Calculate_RaceGuild_ExpCost()");
         select1.classList.add("select_number_box");
         document.getElementById('spelli' + x + 'nro').appendChild(select1);
         // Hyppyloopin 2 muuttujat
@@ -5250,9 +5253,16 @@
      Calculate_Levels();
   }
 
-   function Testi()
+  // ########################################
+  // # Funktio laskee exp costin (data.js)  #
+  // # tiedostosta valitun skill ja spell   # 
+  // # prosentin perusteella ja tulostaa    #
+  // # taulukkoon valitun rodun perusteella #
+  // # jolla on oma ExpKerroin ja laskee    #
+  // # yhteensä alimmalle riville kaikki.   #
+  // ########################################
+  function Calculate_RaceGuild_ExpCost()
   {
-
 	  var TempApuRotu = document.getElementById('Race_Selection')[document.getElementById('Race_Selection').selectedIndex].value;
 	  var TempApuKerroin1 = 1;
 	  var TempApuKerroin2 = 1;
@@ -5323,13 +5333,16 @@
 				}
 				else
 				{
+					// Kerrotaan jakojäännöksellä jos semmoinen on olemassa
 					var TempApuSpelli2 = Human[TempLooppi2][Math.round(TempApuJako2)];
 					if ( TempApuDesimaali2 > 0 )
 					{
 						TempApuSpelli2 = TempApuSpelli2 * (TempApuDesimaali2 + 1);
 					}
+					// Lasketaa rotu kohtaisella kertoimella
+					TempApuSpelli2 = TempApuSpelli2 * TempApuKerroin2;
 					document.getElementById('spellicost' + x2 + 'text').innerHTML = '<div class="total_text_box">' + Math.round(TempApuSpelli2) + '</div>';
-					TempApuLuku2 = TempApuLuku2 + (Math.round(TempApuSpelli2) * TempApuKerroin2);
+					TempApuLuku2 = TempApuLuku2 + Math.round(TempApuSpelli2);
 					document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box"><b>' + TempApuLuku2 + '</b></div>';
 				}
 			}

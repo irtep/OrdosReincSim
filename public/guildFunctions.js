@@ -4,31 +4,44 @@ function calcSpentExpGuilds() {
   
 }
 
-// jos vaihtuu guild levelien määrä ni tää aktivoituu.. callattaa update_levels() raceBackgroundGuild.js kohdasta
+// jos vaihtuu guild levelien määrä ni tää aktivoituu.. kutsutaan update_levels() raceBackgroundGuild.js kohdasta,
+// samoin check_requirements kutsuu tän
+// eli tästä alkaa kaikki functiot täällä:
 function changeInGuildLvls(leveli, kohde) {
+  // etsii kaikki jotka on class "guildSelector:"
+  const kiltat = document.getElementsByClassName('guildSelector');
   const selectedGuild = document.getElementById('Guild'+kohde+'_Selection').value;
+  // paikka mihin laitetaan tieto:
+  const guildInfo = document.getElementById('KiltaTaulukkoPohja');
   
-  showSkillsAndSpells(selectedGuild, kohde);
+  // tyhjäksi vanha:
+  guildInfo.innerHTML = '';
+  
+  // tee jokaiselle valitulle boxi:
+  for (let i = 0; i < kiltat.length; i++) {
+    
+    if (kiltat[i].value !== 'None') {
+      showSkillsAndSpells(kiltat[i].value, i+1);
+    }
+  }
 }
 
 // näyttää skillit ja spellit mitä voi treenata
 // kutsutaan racebackgroundguilds.js kohdasta, update_jotain tms kohdasta, heti alusta
 function showSkillsAndSpells(kilta, kohta) {
   // paikka mihin laitetaan tieto:
-  const guildInfo = document.getElementById('table1');
-  const guildName = document.getElementById('guildName');
+  const guildInfo = document.getElementById('KiltaTaulukkoPohja');
   const findRightSelection = 'Guild'+kohta+'_lvls_Selection';
   const selectedLevelsPlace = document.getElementById(findRightSelection);
   const selectedLevels = selectedLevelsPlace.value;
-  
-  // haetaan kilta:
-  const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
-  
-  //  uusi tablepohjanen: guildInfo taulukon sisaan
   const skills = [];
   const spells = [];
+  // haetaan kilta:
+  const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
   const skillsAndSpells = selectedGuild[0].mayTrain[0].skillsAndSpells;
-  
+  const lastRow = '<tr><td></td><td class = "strongFont">Total cost</td>'+
+        '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td><td></td><td class = "strongFont">Total cost</td>'+
+        '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td></tr></table>'; 
   // montako riviä tarvitaan:
   let rowNumber = null;    
     
@@ -40,8 +53,9 @@ function showSkillsAndSpells(kilta, kohta) {
   }
   
   // ensiksi otsikot:
-  guildInfo.innerHTML = '<tr><td><span class= "bold_heading">'+ selectedGuild[0].longName + '</span></td></tr>'+
-  '<tr><td>Skills</td><td></td><td>Exp</td><td>Spells</td><td></td><td>Exp</td>';
+  guildInfo.innerHTML = guildInfo.innerHTML +
+  '<table class= "guildTable"><tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
+  '<tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">Spells</td><td></td><td class= "strongFont">Exp</td>';
   
   // katotaas monta riviä tarvitaan:
   if (skills.length >= spells.length) { rowNumber = skills.length; } else { rowNumber = spells.length; }  
@@ -74,9 +88,14 @@ function showSkillsAndSpells(kilta, kohta) {
       const nameOfSelectOpt = 'skillPercent'+withoutSpaces;
       skillOnTurn = nameOfSelectOpt;
       
-      skillRow = '<tr><td>' + skills[i].name + '</td><td>'+ 
+      skillRow = '<tr><td style= "width: 200px">' + skills[i].name + '</td><td>'+ 
         // skillin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td><td></td>';
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td>'+
+        // expCost box
+        '<td><div id= "total'+withoutSpaces+'" class= "total_text_box totalSkills">0</div></td>';
+    } else {
+      
+      skillRow = '<tr><td></td><td></td><td></td>';
     }
     
     // tee spellirivi:  
@@ -95,12 +114,14 @@ function showSkillsAndSpells(kilta, kohta) {
       const nameOfSelectOpt = 'spellPercent'+withoutSpacesSpell;
       spellOnTurn = nameOfSelectOpt;
       
-      spellRow = '<td>' + spells[i].name + '</td><td>'+ 
+      spellRow = '<td style= "width: 200px">' + spells[i].name + '</td><td>'+ 
         // spellin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td><td></td></tr>';
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td>'+
+        // expCost box
+        '<td><div id= "total'+withoutSpacesSpell+'" class= "total_text_box totalSpells">0</div></td></tr></table>';
     } else { 
       
-      spellRow = '</tr>'
+      spellRow = '</tr>';
     }
     
     // lisätään rivi:
@@ -123,5 +144,7 @@ function showSkillsAndSpells(kilta, kohta) {
         document.getElementById(spellOnTurn).appendChild(o);
       });
   }
+  // lisätään vielä viimenen rivi: 
+  guildInfo.innerHTML = guildInfo.innerHTML + lastRow;
 }
   
