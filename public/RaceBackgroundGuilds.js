@@ -1574,9 +1574,10 @@
   // ###########################
   // # KILTA: DISCIPLE (alkaa) #
   // ###########################
-  // Alku vaatimus: Joko Civilized tai Evil religious
+  // Alku vaatimus: Joko Civilized tai Evil religious tai Nomad
   if ( document.getElementById('Background_Selection')[document.getElementById('Background_Selection').selectedIndex].value == "Civilized" ||
-       document.getElementById('Background_Selection')[document.getElementById('Background_Selection').selectedIndex].value == "Evil religious" )
+       document.getElementById('Background_Selection')[document.getElementById('Background_Selection').selectedIndex].value == "Evil religious" ||
+       document.getElementById('Background_Selection')[document.getElementById('Background_Selection').selectedIndex].value == "Nomad" )
   { 
    // Variablet asetetaan tässä
    var looppi1 = 1;
@@ -5193,8 +5194,8 @@
 			document.getElementById('RaceGuild_Skills_Spells' + apu).appendChild(td6);
 			document.getElementById('textcost1').innerHTML = "<b>Total cost</b>";
 			document.getElementById('textcost2').innerHTML = "<b>Total cost</b>";
-			document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box"><b>0</b></div>';
-			document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box"><b>0</b></div>';
+			document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box">0</div>';
+			document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box">0</div>';
 		}
 		if ( TempSkills1.length < TempSpells1.length && TempSpells1.length == x + 1)
 		{

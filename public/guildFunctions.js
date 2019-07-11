@@ -12,7 +12,7 @@ function changeInGuildLvls(leveli, kohde) {
   const kiltat = document.getElementsByClassName('guildSelector');
   const selectedGuild = document.getElementById('Guild'+kohde+'_Selection').value;
   // paikka mihin laitetaan tieto:
-  const guildInfo = document.getElementById('KiltaTaulukkoPohja');
+  const guildInfo = document.getElementById('Kiltat');
   
   // tyhjäksi vanha:
   guildInfo.innerHTML = '';
@@ -30,7 +30,7 @@ function changeInGuildLvls(leveli, kohde) {
 // kutsutaan racebackgroundguilds.js kohdasta, update_jotain tms kohdasta, heti alusta
 function showSkillsAndSpells(kilta, kohta) {
   // paikka mihin laitetaan tieto:
-  const guildInfo = document.getElementById('KiltaTaulukkoPohja');
+  const guildInfo = document.getElementById('Kiltat');
   const findRightSelection = 'Guild'+kohta+'_lvls_Selection';
   const selectedLevelsPlace = document.getElementById(findRightSelection);
   const selectedLevels = selectedLevelsPlace.value;
@@ -39,11 +39,18 @@ function showSkillsAndSpells(kilta, kohta) {
   // haetaan kilta:
   const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
   const skillsAndSpells = selectedGuild[0].mayTrain[0].skillsAndSpells;
+  const firstRow = '<table class= "guildTable" border = "1">'+ 
+    '<tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
+  '<tr><td>'+ 
+    '<table border= "1"><tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">'+
+    'Spells</td><td></td><td class= "strongFont">Exp</td></tr>'; 
   const lastRow = '<tr><td></td><td class = "strongFont">Total cost</td>'+
         '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td><td></td><td class = "strongFont">Total cost</td>'+
-        '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td></tr></table>'; 
+        '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td></tr>'+
+        '</td></tr></table></td></tr></table><br><br>';  // päättävä rivi
   // montako riviä tarvitaan:
-  let rowNumber = null;    
+  let rowNumber = null;  
+  let readyRow = null;
     
   // etsi skillit ja spellit: 
   for (let ii = 0; ii < skillsAndSpells.length; ii++) {
@@ -51,11 +58,6 @@ function showSkillsAndSpells(kilta, kohta) {
     // jos skilli, niin skilleihin, jos ei niin spelleihin
     skillsAndSpells[ii].skill ? skills.push(skillsAndSpells[ii]) : spells.push(skillsAndSpells[ii]);
   }
-  
-  // ensiksi otsikot:
-  guildInfo.innerHTML = guildInfo.innerHTML +
-  '<table class= "guildTable" border = "1"><tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
-  '<tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">Spells</td><td></td><td class= "strongFont">Exp</td>';
   
   // katotaas monta riviä tarvitaan:
   if (skills.length >= spells.length) { rowNumber = skills.length; } else { rowNumber = spells.length; }  
@@ -87,10 +89,10 @@ function showSkillsAndSpells(kilta, kohta) {
       // skillin nimi:
       const nameOfSelectOpt = 'skillPercent'+withoutSpaces;
       skillOnTurn = nameOfSelectOpt;
-      
+                  
       skillRow = '<tr><td class= "nameOfSkill">' + skills[i].name + '</td><td>'+ 
         // skillin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td>'+
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box"><option>0</option></select></td>'+
         // expCost box
         '<td><div id= "total'+withoutSpaces+'" class= "total_text_box totalSkills">0</div></td>';
     } else {
@@ -116,7 +118,7 @@ function showSkillsAndSpells(kilta, kohta) {
       
       spellRow = '<td class= "nameOfSkill">' + spells[i].name + '</td><td>'+ 
         // spellin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()"><option>0</option></select></td>'+
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box"><option>0</option></select></td>'+
         // expCost box
         '<td><div id= "total'+withoutSpacesSpell+'" class= "total_text_box totalSpells">0</div></td></tr>';
     } else { 
@@ -124,27 +126,44 @@ function showSkillsAndSpells(kilta, kohta) {
       spellRow = '</tr>';
     }
     
-    // lisätään rivi:
-    guildInfo.innerHTML = guildInfo.innerHTML + skillRow + spellRow;
-    
+    // eka rivi ekassa loopissa
+    if (i === 0) {
+      
+      readyRow = firstRow + skillRow + spellRow;
+    } else {
+      
+      // lisätään rivi:
+      readyRow += skillRow + spellRow;
+    }  
+    /*
     // numero optionit skilleihin:
-        filteredSkillNumbers.forEach( (numbero) => {
-        const o = document.createElement('option');
+    filteredSkillNumbers.forEach( (numbero) => {
+      const o = document.createElement('option');
           
-        o.text = numbero;
-        o.value = numbero;
-        document.getElementById(skillOnTurn).appendChild(o);
-      });
+      o.text = numbero;
+      o.value = numbero;
+      document.getElementById(skillOnTurn).appendChild(o);
+    });
     // ja spelleihin
-        filteredSkillNumbers.forEach( (numbero) => {
-        const o = document.createElement('option');
+    filteredSkillNumbers.forEach( (numbero) => {
+      const o = document.createElement('option');
           
-        o.text = numbero;
-        o.value = numbero;
-        document.getElementById(spellOnTurn).appendChild(o);
-      });
+      o.text = numbero;
+      o.value = numbero;
+      document.getElementById(spellOnTurn).appendChild(o);
+    });
+    */
+    // i < rowNumber
+    // jos viimenen niin laitetaan vielä viimenen rivi:
+    if (i + 1 === rowNumber) {
+        
+        readyRow += lastRow;
+    }
   }
   // lisätään vielä viimenen rivi: 
-  guildInfo.innerHTML = guildInfo.innerHTML + lastRow;
+  //fullRow += lastRow;
+  console.log('gI.nH ', guildInfo.innerHTML);
+  console.log('lR ', lastRow);
+  guildInfo.innerHTML += readyRow;
 }
   
