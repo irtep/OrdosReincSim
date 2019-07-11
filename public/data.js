@@ -304,7 +304,7 @@
   ["Satyr", "skill", "Hiking", 10,17,25,32,40],
   ["Satyr", "spell", "Create food", 5,8,12,16,20],
   ["Satyr", "spell", "Hallucination", 0,20,30,40,50],
-  ["Satyr", "spell", "Uncontrollable hideous<br>laughter", 20,27,35,42,50],
+  ["Satyr", "spell", "Uncontrollable hideous laughter", 20,27,35,42,50],
   ["Shadow", "title", "Soldiers of Oblivion"],
   ["Shadow", "skill", "Conceal spellcasting", 0,0,10,20,30],
   ["Shadow", "skill", "Enhanced peer", 10,17,25,32,40],

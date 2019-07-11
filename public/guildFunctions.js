@@ -21,14 +21,14 @@ function changeInGuildLvls(leveli, kohde) {
   for (let i = 0; i < kiltat.length; i++) {
     
     if (kiltat[i].value !== 'None') {
-      showSkillsAndSpells(kiltat[i].value, i+1);
+      showSkillsAndSpells(kiltat[i].value, i+1, i);
     }
   }
 }
 
 // näyttää skillit ja spellit mitä voi treenata
 // kutsutaan racebackgroundguilds.js kohdasta, update_jotain tms kohdasta, heti alusta
-function showSkillsAndSpells(kilta, kohta) {
+function showSkillsAndSpells(kilta, kohta, mones) {
   // paikka mihin laitetaan tieto:
   const guildInfo = document.getElementById('Kiltat');
   const findRightSelection = 'Guild'+kohta+'_lvls_Selection';
@@ -39,15 +39,28 @@ function showSkillsAndSpells(kilta, kohta) {
   // haetaan kilta:
   const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
   const skillsAndSpells = selectedGuild[0].mayTrain[0].skillsAndSpells;
-  const firstRow = '<table class= "guildTable" border = "1">'+ 
+  let firstRow = null;
+  // if sille tuleeko vaakaviiva vai ei:
+  if (mones === 0) {
+    
+    firstRow = '<table class= "guildTable">'+ 
     '<tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
   '<tr><td>'+ 
-    '<table border= "1"><tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">'+
+    '<table><tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">'+
     'Spells</td><td></td><td class= "strongFont">Exp</td></tr>'; 
+  } else {
+    
+    firstRow = '<table class= "guildTable vaakaviiva">'+ 
+    '<tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
+  '<tr><td>'+ 
+    '<table><tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">'+
+    'Spells</td><td></td><td class= "strongFont">Exp</td></tr>'; 
+  }
+  
   const lastRow = '<tr><td></td><td class = "strongFont">Total cost</td>'+
         '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td><td></td><td class = "strongFont">Total cost</td>'+
         '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td></tr>'+
-        '</td></tr></table></td></tr></table><br><br>';  // päättävä rivi
+        '</td></tr></table></td></tr></table><br>';  // päättävä rivi
   // montako riviä tarvitaan:
   let rowNumber = null;  
   let readyRow = null;
@@ -79,20 +92,14 @@ function showSkillsAndSpells(kilta, kohta) {
       
       // poistaa spacet nimestä
       const withoutSpaces = skills[i].name.replace(/\s/g, '');
-      
-      // poista isommat kuin mikä maximi mitä saa treenata
-      filteredSkillNumbers = numbers.filter( numero => numero <= skills[i].levels[selectedLevels-1]);
-      
-      // lisää max prosentti, jos ei ole jo.
-      if (filteredSkillNumbers[filteredSkillNumbers.length-1] !== skills[i].levels[selectedLevels-1]) {filteredSkillNumbers.push(skills[i].levels[selectedLevels-1]);}  
-      
+ 
       // skillin nimi:
       const nameOfSelectOpt = 'skillPercent'+withoutSpaces;
       skillOnTurn = nameOfSelectOpt;
                   
-      skillRow = '<tr><td class= "nameOfSkill">' + skills[i].name + '</td><td>'+ 
+      skillRow = '<tr><td class = "skill_name_text_box" id= "nameOfSkill'+withoutSpaces+'">' + skills[i].name + '</td><td>'+ 
         // skillin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box"><option>0</option></select></td>'+
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box skill_percents"><option>0</option></select></td>'+
         // expCost box
         '<td><div id= "total'+withoutSpaces+'" class= "total_text_box totalSkills">0</div></td>';
     } else {
@@ -105,20 +112,14 @@ function showSkillsAndSpells(kilta, kohta) {
     
       // poistaa spacet nimestä
       const withoutSpacesSpell = spells[i].name.replace(/\s/g, '');
-      
-      // poista isommat kuin mikä maximi mitä saa treenata
-      filteredSpellNumbers = numbers.filter( numero => numero <= spells[i].levels[selectedLevels-1]);
-      
-      // lisää max prosentti, jos ei ole jo.
-      if (filteredSpellNumbers[filteredSpellNumbers.length-1] !== spells[i].levels[selectedLevels-1]) {filteredSpellNumbers.push(spells[i].levels[selectedLevels-1]);}  
-      
+  
       // spellin nimi:
       const nameOfSelectOpt = 'spellPercent'+withoutSpacesSpell;
       spellOnTurn = nameOfSelectOpt;
       
-      spellRow = '<td class= "nameOfSkill">' + spells[i].name + '</td><td>'+ 
+      spellRow = '<td class= "skill_name_text_box" id= "nameOfSkill'+withoutSpacesSpell+'">' + spells[i].name + '</td><td>'+ 
         // spellin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box"><option>0</option></select></td>'+
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box spell_percents"><option>0</option></select></td>'+
         // expCost box
         '<td><div id= "total'+withoutSpacesSpell+'" class= "total_text_box totalSpells">0</div></td></tr>';
     } else { 
@@ -135,24 +136,7 @@ function showSkillsAndSpells(kilta, kohta) {
       // lisätään rivi:
       readyRow += skillRow + spellRow;
     }  
-    /*
-    // numero optionit skilleihin:
-    filteredSkillNumbers.forEach( (numbero) => {
-      const o = document.createElement('option');
-          
-      o.text = numbero;
-      o.value = numbero;
-      document.getElementById(skillOnTurn).appendChild(o);
-    });
-    // ja spelleihin
-    filteredSkillNumbers.forEach( (numbero) => {
-      const o = document.createElement('option');
-          
-      o.text = numbero;
-      o.value = numbero;
-      document.getElementById(spellOnTurn).appendChild(o);
-    });
-    */
+
     // i < rowNumber
     // jos viimenen niin laitetaan vielä viimenen rivi:
     if (i + 1 === rowNumber) {
@@ -161,9 +145,46 @@ function showSkillsAndSpells(kilta, kohta) {
     }
   }
   // lisätään vielä viimenen rivi: 
-  //fullRow += lastRow;
-  console.log('gI.nH ', guildInfo.innerHTML);
-  console.log('lR ', lastRow);
   guildInfo.innerHTML += readyRow;
+  
+  // lisätään rullavalikoihin numerot:
+  const skillPercs = document.getElementsByClassName('skill_percents');
+  const spellPercs = document.getElementsByClassName('spell_percents');
+  
+  // skillit:
+  for (let i = 0; i < skills.length; i++) {
+    
+    // poista isommat kuin mikä maximi mitä saa treenata    
+    filteredSkillNumbers = numbers.filter( numero => numero <= skills[i].levels[selectedLevels-1]);
+    // lisää max prosentti, jos ei ole jo.
+    if (filteredSkillNumbers[filteredSkillNumbers.length-1] !== skills[i].levels[selectedLevels-1]) {filteredSkillNumbers.push(skills[i].levels[selectedLevels-1]);}  
+    
+    // numero optionit skilleihin:
+    filteredSkillNumbers.forEach( (numbero) => {
+      const o = document.createElement('option');
+          
+      o.text = numbero;
+      o.value = numbero;
+      document.getElementById(skillPercs[i].id).appendChild(o);
+    });      
+  }
+  // spellit:
+  for (let i = 0; i < spells.length; i++) {
+    
+    // poista isommat kuin mikä maximi mitä saa treenata    
+    filteredSpellNumbers = numbers.filter( numero => numero <= spells[i].levels[selectedLevels-1]);
+    // lisää max prosentti, jos ei ole jo.
+    if (filteredSpellNumbers[filteredSpellNumbers.length-1] !== spells[i].levels[selectedLevels-1]) {filteredSpellNumbers.push(spells[i].levels[selectedLevels-1]);}  
+    
+    // numero optionit spelleihin:
+    filteredSpellNumbers.forEach( (numbero) => {
+      const o = document.createElement('option');
+          
+      o.text = numbero;
+      o.value = numbero;
+      document.getElementById(spellPercs[i].id).appendChild(o);
+    });      
+  }  
 }
+
   
