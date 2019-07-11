@@ -5067,6 +5067,7 @@
       // Luo TD elementin ja laittaa sille ID
       var td1 = document.createElement('td');
       td1.id = "skilli" + x + "text";
+      td1.classList.add("skill_name_text_box");
       document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
 	    Teksti1 = TempSkills1[x];
       document.getElementById('skilli' + x + 'text').innerHTML = Teksti1;
@@ -5107,6 +5108,7 @@
 	    else // Jos ei löydy skillejä luodaa tyhjää taulukkoa
 	    {
 			var td1 = document.createElement('td');
+      td1.classList.add("skill_name_text_box2");
 			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
 			var td2 = document.createElement('td');
 			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td2);
@@ -5119,6 +5121,7 @@
         // Luo TD elementin ja laittaa sille ID
         var td1 = document.createElement('td');
         td1.id = "spelli" + x + "text";
+        td1.classList.add("spell_name_text_box");
         document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
 	    Teksti2 = TempSpells1[x];
 	    document.getElementById('spelli' + x + 'text').innerHTML = Teksti2;
@@ -5159,6 +5162,7 @@
 	    else // Jos ei löydy spellejä luodaa tyhjää taulukkoa
 	    {
 			var td1 = document.createElement('td');
+      td1.classList.add("spell_name_text_box2");
 			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td1);
 			var td2 = document.createElement('td');
 			document.getElementById('RaceGuild_Skills_Spells' + x).appendChild(td2);
@@ -5267,6 +5271,9 @@
 	  var TempApuRotu = document.getElementById('Race_Selection')[document.getElementById('Race_Selection').selectedIndex].value;
 	  var TempApuKerroin1 = 1;
 	  var TempApuKerroin2 = 1;
+    var TempApuSkilli2 = 0;
+    var TempApuLasku1 = 0;
+    var TempApuLasku2 = 0;
 	  // Taika looppi (EXP) tekee taas ihmeitään!
 	  for ( var Looppi = 0; Looppi < ExpKerroin.length; Looppi++ )
 	  {
@@ -5293,25 +5300,32 @@
 			{
 				if ( TempApuJako1 == 0 )
 				{
-					document.getElementById('skillicost' + x1 + 'text').innerHTML = '<div class="total_text_box">0</div>';
+					document.getElementById('skillicost' + x1 + 'text').innerHTML = '<div id="Skill_Cost_Box' + x1 + '" class="total_text_box">0</div>'
 				}
 				else
 				{
 					// Kerrotaan jakojäännöksellä jos semmoinen on olemassa
-					var TempApuSkilli2 = Human[TempLooppi1][Math.round(TempApuJako1)];
+					TempApuSkilli2 = Human[TempLooppi1][Math.round(TempApuJako1)];
 					if ( TempApuDesimaali1 > 0 )
 					{
 						TempApuSkilli2 = TempApuSkilli2 * (TempApuDesimaali1 + 1);
 					}
 					// Lasketaa rotu kohtaisella kertoimella
 					TempApuSkilli2 = TempApuSkilli2 * TempApuKerroin1;
-					document.getElementById('skillicost' + x1 + 'text').innerHTML = '<div class="total_text_box">' + Math.round(TempApuSkilli2) + '</div>';
+					document.getElementById('skillicost' + x1 + 'text').innerHTML = '<div id="Skill_Cost_Box' + x1 + '" class="total_text_box">' + Math.round(TempApuSkilli2) + '</div>';
 					TempApuLuku1 = TempApuLuku1 + Math.round(TempApuSkilli2);
-					document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box"><b>' + TempApuLuku1 + '</b></div>';
-				}
+					document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box">' + TempApuLuku1 + '</div>';
+        }
 			}
 		}
- 		x1++;  
+      // Lasketaan Skill costi loorat yhteensä ja jos nolla niin Totals on nolla
+      TempApuLasku1 = TempApuLasku1 + document.getElementById('Skill_Cost_Box' + x1).innerHTML;
+      if ( TempApuLasku1 == 0 )
+      {
+        document.getElementById('totaltextbox1').innerHTML = '<div class="total_text_box">0</div>';
+      }
+      
+ 		x1++;
 	  }
 	  var x2 = 0;
 	  var TempApuLuku2 = 0;
@@ -5330,7 +5344,7 @@
 			{
 				if ( TempApuJako2 == 0 )
 				{
-					document.getElementById('spellicost' + x2 + 'text').innerHTML = '<div class="total_text_box">0</div>';
+					document.getElementById('spellicost' + x2 + 'text').innerHTML = '<div id="Spell_Cost_Box' + x2 + '" class="total_text_box">0</div>';
 				}
 				else
 				{
@@ -5342,12 +5356,19 @@
 					}
 					// Lasketaa rotu kohtaisella kertoimella
 					TempApuSpelli2 = TempApuSpelli2 * TempApuKerroin2;
-					document.getElementById('spellicost' + x2 + 'text').innerHTML = '<div class="total_text_box">' + Math.round(TempApuSpelli2) + '</div>';
+					document.getElementById('spellicost' + x2 + 'text').innerHTML = '<div id="Spell_Cost_Box' + x2 + '" class="total_text_box">' + Math.round(TempApuSpelli2) + '</div>';
 					TempApuLuku2 = TempApuLuku2 + Math.round(TempApuSpelli2);
-					document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box"><b>' + TempApuLuku2 + '</b></div>';
+					document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box">' + TempApuLuku2 + '</div>';
 				}
 			}
 		}
+      // Lasketaan Spell costi loorat yhteensä ja jos nolla niin Totals on nolla
+      TempApuLasku2 = TempApuLasku2 + document.getElementById('Spell_Cost_Box' + x2).innerHTML;
+      if ( TempApuLasku2 == 0 )
+      {
+        document.getElementById('totaltextbox2').innerHTML = '<div class="total_text_box">0</div>';
+      }
+      
  		x2++;  
 	  }
   }

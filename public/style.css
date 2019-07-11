@@ -1,6 +1,17 @@
 /* styles */
 /* called by your view template */
 
+/* TESTI FIXED */
+.fixed_testi {
+  position: fixed;
+  border: 1px solid blue;
+  background-color: rgba(255,200,200,0.5);  
+  width: 300px;
+  height: 200px;
+  top: 0;
+  right: 0;
+}
+
 /* skillien ja spellien paikat: */
 .skills {
   margin: 1px;
@@ -119,73 +130,37 @@
   bottom: 20px;
 }
 
-/* Checkboxin asetukset (esim Booneissa) */
-/* Määrittää tekstin asetukset */
-.checkboxi {
-  display: block;
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+/* Skillin nimi ja spellin nimi laatikon leveys asetukset */
+.skill_name_text_box {
+  text-align: left;
+  width: 170px;
+  border: dotted;
+  border-top-style: none;
+  border-right-style: none;
+  border-bottom-style: dotted;
+  border-left-style: solid;
 }
 
-/* Määrittää hiiren osoittimen */
-.checkboxi input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+.skill_name_text_box2 {
+  text-align: left;
+  width: 170px;
+  border: none;
 }
 
-/* Piirtää laatikon */
-.checkmarkki {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 18px;
-  width: 18px;
-  background-color: white;
+.spell_name_text_box {
+  text-align: left;
+  width: 170px;
+  border: none;
+  border-top-style: none;
+  border-right-style: none;
+  border-bottom-style: dotted;
+  border-left-style: solid;
 }
 
-/* Taustaväri kun hiiri on laatikon päällä */
-.checkboxi:hover input ~ .checkmarkki {
-  background-color: grey;
-}
-
-/* Taustaväri kun laatikko on checked */
-.checkboxi input:checked ~ .checkmarkki {
-  background-color: black;
-}
-
-/* Teksti jälkeen ? */
-.checkmarkki:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Laatikko jälkeen ? */
-.checkboxi input:checked ~ .checkmarkki:after {
-  display: block;
-}
-
-/* Piirtää laatikkoon väkäsen eli check merkin */
-.checkboxi .checkmarkki:after {
-  left: 6px;
-  top: 2px;
-  width: 3px;
-  height: 8px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+.spell_name_text_box2 {
+  text-align: left;
+  width: 170px;
+  border: none;
 }
 
 .strongFont {
