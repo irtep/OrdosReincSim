@@ -127,14 +127,18 @@
   text-align: left;
   font-size: 12px;
   padding: 0px 0px;
-  bottom: 20px;
+  border: 2px;
+  border-top-style: none;
+  border-right-style: none;
+  border-bottom-style: dotted;
+  border-left-style: none;
 }
 
 /* Skillin nimi ja spellin nimi laatikon leveys asetukset */
 .skill_name_text_box {
   text-align: left;
   width: 170px;
-  border: dotted;
+  border: 2px;
   border-top-style: none;
   border-right-style: none;
   border-bottom-style: dotted;
@@ -150,7 +154,7 @@
 .spell_name_text_box {
   text-align: left;
   width: 170px;
-  border: none;
+  border: 2px;
   border-top-style: none;
   border-right-style: none;
   border-bottom-style: dotted;

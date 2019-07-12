@@ -4517,6 +4517,8 @@
 
   // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
   Calculate_Levels();
+  // Kutsutaan Level_Limitter() funktiota
+  Level_Limitter(kohta);
   // #########################################
   // # Alert message näyttää listan jos      #
   // # kilta on valittuna lista laatikossa.  #
@@ -4956,7 +4958,7 @@
   Calculate_Levels();
    // Kiltojen skillien ja spellien näytön kutsuminen:
    changeInGuildLvls(leveli, kohde);
-
+  
  }
 
  // #########################################
