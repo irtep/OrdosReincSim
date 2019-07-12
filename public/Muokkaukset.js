@@ -1,4 +1,8 @@
 /*
+  12 heinäkuuta, klo 9:13. Nimesin reincsim.js tiedoston BoonsLevelsCost.js, johon vaikka booneille, levelcost, training points,
+                           level limitti ym jutuille koodia... / ordos
+*/
+/*
   11 heinäkuuta, klo 12:40. Styletin total_text_box ja total_text_box2, asetin width 100px jos se olis sopiva leveys.
                  klo 13:15. Styletin skill_name_text_box ja spell_name_text_box 170px leveys (Rotukillan tulostuksessa).
                  klo 14:21. Rebirth, Racelevel, Race, Guildlist, Guilds, Lvls, Raceinfo, Raceguild, Boons ja Raceguild 

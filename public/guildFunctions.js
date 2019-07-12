@@ -1,7 +1,60 @@
-
-// tällä voi laskea exp..
-function calcSpentExpGuilds() {
+function calcTotalExpsSpent() {
+  const skillit = document.getElementsByClassName('totalSkillz');
+  const spellit = document.getElementsByClassName('totalSpellz');
+  const totalSkills = document.getElementById('totalSkillsCost');
+  const totalSpells = document.getElementById('totalSpellsCost');
+  let calculatedSkills = 0; let calculatedSpells = 0;
   
+  // skillit
+  for (let i = 0; i < skillit.length; i++) { calculatedSkills += parseInt(skillit[i].innerHTML); }
+  // spellit
+  for (let i = 0; i < spellit.length; i++) { calculatedSpells += parseInt(spellit[i].innerHTML); }
+  
+  totalSkills.innerHTML = calculatedSkills;
+  totalSpells.innerHTML = calculatedSpells;
+}
+// tällä voi laskea exp..
+function calcSpentExpGuilds(ide, val) {
+  // taiat ja taiot lista boxeista johon tulee expCostit
+  const skillsSpells = document.getElementsByClassName('totalSS');
+  let price = null;
+  const costApuTaulukko = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
+  //const kaikki = taiat.concat(taidot);
+  // poistaa sanat spell, skill ja percent eli jää vaan skillin/spellin nimi ilman spacea
+  const toSearch = ide.replace(/skill|spell|Percent/gi, ''); // (/\s/g, '');
+  // etsitään skilli costineen
+  for (let ix = 0; ix < Human.length; ix++) { 
+  //const skillTaiSpell = Human.filter( (taito) => {
+    const spacetPois = Human[ix][0].replace(/\s/g, '');
+    
+    if (spacetPois === toSearch) {
+      let hitti = null; // monesko sarake oikeassa paikassa
+      let oikeaLokero = null;
+      let sarake = ix;
+      
+      for (let i = 0; i < costApuTaulukko.length; i++) {
+        
+        if (costApuTaulukko[i] == val) { hitti = i; }
+      }
+      
+      // etsitään oikea lokero
+      for (let ii = 0; ii < skillsSpells.length; ii++) {
+        const etsittava = skillsSpells[ii].id.replace(/total/gi, '');
+        
+        if (etsittava === toSearch) { 
+          
+          oikeaLokero = skillsSpells[ii];
+          // jos numero niin laitetaan sellasenaan, jos ei ni 0
+          const onkoNumero = Number.isInteger(Human[sarake][hitti]);
+          onkoNumero ? oikeaLokero.innerHTML = Human[sarake][hitti] : oikeaLokero.innerHTML = 0;
+          
+          // lasketaan
+          calcTotalExpsSpent();
+          return;
+        }
+      } 
+    } 
+  } 
 }
 
 // jos vaihtuu guild levelien määrä ni tää aktivoituu.. kutsutaan update_levels() raceBackgroundGuild.js kohdasta,
@@ -59,7 +112,7 @@ function showSkillsAndSpells(kilta, kohta, mones) {
   
   const lastRow = '<tr><td></td><td class = "strongFont">Total cost</td>'+
         '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td><td></td><td class = "strongFont">Total cost</td>'+
-        '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td></tr>'+
+        '<td><div id= "totalSpellsCost" class= "total_text_box">0</div></td></tr>'+
         '</td></tr></table></td></tr></table><br>';  // päättävä rivi
   // montako riviä tarvitaan:
   let rowNumber = null;  
@@ -99,9 +152,9 @@ function showSkillsAndSpells(kilta, kohta, mones) {
                   
       skillRow = '<tr><td class = "skill_name_text_box" id= "nameOfSkill'+withoutSpaces+'">' + skills[i].name + '</td><td>'+ 
         // skillin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box skill_percents"><option>0</option></select></td>'+
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds(this.id, this.value)" class= "select_number_box skill_percents"><option>0</option></select></td>'+
         // expCost box
-        '<td><div id= "total'+withoutSpaces+'" class= "total_text_box totalSkills">0</div></td>';
+        '<td><div id= "total'+withoutSpaces+'" class= "total_text_box totalSS totalSkillz">0</div></td>';
     } else {
       
       skillRow = '<tr><td></td><td></td><td></td>';
@@ -119,9 +172,9 @@ function showSkillsAndSpells(kilta, kohta, mones) {
       
       spellRow = '<td class= "skill_name_text_box" id= "nameOfSkill'+withoutSpacesSpell+'">' + spells[i].name + '</td><td>'+ 
         // spellin prosenttivalikko:
-        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds()" class= "select_number_box spell_percents"><option>0</option></select></td>'+
+        '<select id= "'+nameOfSelectOpt+'" onchange= "calcSpentExpGuilds(this.id, this.value)" class= "select_number_box spell_percents"><option>0</option></select></td>'+
         // expCost box
-        '<td><div id= "total'+withoutSpacesSpell+'" class= "total_text_box totalSpells">0</div></td></tr>';
+        '<td><div id= "total'+withoutSpacesSpell+'" class= "total_text_box totalSS totalSpellz">0</div></td></tr>';
     } else { 
       
       spellRow = '</tr>';
