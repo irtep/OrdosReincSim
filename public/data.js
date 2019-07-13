@@ -557,7 +557,7 @@ const allGuilds = [
       skillsAndSpells: [  // nimi, skilli, spelli
         new SkillSpell('Tree herding', true, false, 
           [33, 66, 100] // paljon saa per leveli, 1, 2 , 3, 4, 5
-          , 398),  // skillcost ekalle 5% tälle...
+          , 398),  // skillcost ekalle 5% tälle... voi jäädä tyhjäksi.. tämä tulee muualta
         new SkillSpell('Travel', false, true, 
           [33, 66, 100] 
           , 417)

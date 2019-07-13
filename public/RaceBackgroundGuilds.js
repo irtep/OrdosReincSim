@@ -1,4 +1,15 @@
-
+ // #######################
+ // # Globaalit muuttujat #
+ // ####################### 
+ // Muutama valikoitu muuttuja
+ var Valittu_Syntyma;
+ var Valittu_Rotu_Leveli; 
+ var Valittu_Rotu;
+ var Valittu_Tausta;
+ var Valittu_Kilta;
+ var Valittu_Kilta_Leveli;
+ var Valittu_Kilta_Kohta;
+ var Levelien_Kokonaismaara;
  // Kilta leveli muuttujat
  var AelenaLvls = 0;
  var AelenaPosition = 0;
@@ -101,8 +112,9 @@
  // ###################################
  function Update_RaceList()
  {
+  Valittu_Syntyma = document.getElementById('Rebirth_Selection')[document.getElementById('Rebirth_Selection').selectedIndex].value;
   // Mortal on valittu
-  if ( document.getElementById('Rebirth_Selection')[document.getElementById('Rebirth_Selection').selectedIndex].value == "Mortal" )
+  if ( Valittu_Syntyma == "Mortal" )
   {
    var apu1 = 0;
    apu1 = document.getElementById('Race_Selection').options.length;
@@ -147,7 +159,7 @@
   }
 
   // Elder on valittu
-  if ( document.getElementById('Rebirth_Selection')[document.getElementById('Rebirth_Selection').selectedIndex].value == "Elder" )
+  if ( Valittu_Syntyma == "Elder" )
   {
    document.getElementById('Race_guild_levels_Selection').options.length = 0; 
    document.getElementById('Race_guild_levels_Selection').options[0] = new Option('5','5');
@@ -195,7 +207,7 @@
   }
 
   // Ancient on valittu
-  if ( document.getElementById('Rebirth_Selection')[document.getElementById('Rebirth_Selection').selectedIndex].value == "Ancient" )
+  if ( Valittu_Syntyma == "Ancient" )
   {
    document.getElementById('Race_guild_levels_Selection').options.length = 0; 
    document.getElementById('Race_guild_levels_Selection').options[0] = new Option('5','5');
@@ -247,7 +259,7 @@
   }
 
   // Eternal on valittu
-  if ( document.getElementById('Rebirth_Selection')[document.getElementById('Rebirth_Selection').selectedIndex].value == "Eternal" )
+  if ( Valittu_Syntyma == "Eternal" )
   {
    document.getElementById('Race_guild_levels_Selection').options.length = 0; 
    document.getElementById('Race_guild_levels_Selection').options[0] = new Option('5','5');
@@ -316,10 +328,10 @@
  // ################################
  function Update_RaceInfo()
  {
-  var TempRotu = document.getElementById('Race_Selection')[document.getElementById('Race_Selection').selectedIndex].value;
+  Valittu_Rotu = document.getElementById('Race_Selection')[document.getElementById('Race_Selection').selectedIndex].value;
   for (var TempLooppi = 0; TempLooppi < Races.length; TempLooppi++)
   {
-   if (TempRotu === Races[TempLooppi].name)
+   if (Valittu_Rotu === Races[TempLooppi].name)
    {
     document.getElementById('Race_Name').innerHTML = Races[TempLooppi].name;
     document.getElementById('Race_Str').innerHTML = Races[TempLooppi].strength;
@@ -344,7 +356,9 @@
  // ##################################
  function Check_Requiments(kilta, kohta)
  {
-   
+   // Asetetaan globaali muuttujat
+   Valittu_Kilta = kilta;
+   Valittu_Kilta_Kohta = kohta;
    //guildin skillien ja spellejen functio:
    // puolen sekunnin päästä, niin ehtii vaihtua tuo kiltanumero
    setTimeout( () => {changeInGuildLvls(kilta, kohta); }, 500);
@@ -4515,10 +4529,11 @@
   // # KILTA: TZARAKK (loppuu) #
   // ###########################
 
+   
   // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
   Calculate_Levels();
-  // Kutsutaan Level_Limitter() funktiota
-  Level_Limitter(kohta);
+  
+    
   // #########################################
   // # Alert message näyttää listan jos      #
   // # kilta on valittuna lista laatikossa.  #
@@ -4546,54 +4561,6 @@
  // #####################################
  function Update_Guilds(background)
  {
-  // Nollataan kilta levelit
-  AelenaLvls = 0;
-  AlchemistsLvls = 0;
-  AnimistLvls = 0;
-  ArchersLvls = 0;
-  BarbarianLvls = 0;
-  BardLvls = 0;
-  BeastmasterLvls = 0;
-  ChannelersLvls = 0;
-  CavalierLvls = 0;
-  Civilized_fightersLvls = 0;
-  CivmageLvls = 0;
-  CrimsonLvls = 0;
-  DiscipleLvls = 0;
-  DruidsLvls = 0;
-  ExplorerLvls = 0;
-  FolkloristLvls = 0;
-  Inner_circleLvls = 0;
-  KharimLvls = 0;
-  KnightLvls = 0;
-  LiberatorLvls = 0;
-  MageLvls = 0;
-  Mage_acidLvls = 0;
-  Mage_asphLvls = 0;
-  Mage_coldLvls = 0;
-  Mage_elecLvls = 0;
-  Mage_fireLvls = 0;
-  Mage_manaLvls = 0;
-  Mage_poisonLvls = 0;
-  MerchantLvls = 0;
-  MonkLvls = 0;
-  NavigatorLvls = 0;
-  NergalLvls = 0;
-  NunLvls = 0;
-  PriestsLvls = 0;
-  PsionicistLvls = 0;
-  RangerLvls = 0;
-  ReaverLvls = 0;
-  RiftwalkerLvls = 0;
-  RunemagesLvls = 0;
-  SabresLvls = 0;
-  SpiderLvls = 0;
-  SquireLvls = 0;
-  TarmalenLvls = 0;
-  TemplarLvls = 0;
-  TigerLvls = 0;
-  TreenavLvls = 0;
-  TzarakkLvls = 0;
   // ##############################
   // # Asetetaan Civilized killat #
   // ##############################
@@ -4739,227 +4706,6 @@
   Calculate_Levels();
  }
 
- // ####################################
- // # Funktio tarkistaa sen hetkiset   #
- // # valitut killat ja levelit ja     #
- // # laittaa väliaikaisiin muuttujiin #
- // ####################################
- function Update_Levels(leveli, kohde)
- {
-   
-  var TempGuild = "";
-  var TempLevel = "";
-  // Katsotaan valinan kilta leveli ja sen hetkinen kilta
-  switch (kohde)
-  {
-	  case 1:
-	   TempGuild = document.getElementById('Guild1_Selection')[document.getElementById('Guild1_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild1_lvls_Selection')[document.getElementById('Guild1_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 2:
-	   TempGuild = document.getElementById('Guild2_Selection')[document.getElementById('Guild2_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild2_lvls_Selection')[document.getElementById('Guild2_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 3:
-	   TempGuild = document.getElementById('Guild3_Selection')[document.getElementById('Guild3_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild3_lvls_Selection')[document.getElementById('Guild3_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 4:
-	   TempGuild = document.getElementById('Guild4_Selection')[document.getElementById('Guild4_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild4_lvls_Selection')[document.getElementById('Guild4_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 5:
-	   TempGuild = document.getElementById('Guild5_Selection')[document.getElementById('Guild5_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild5_lvls_Selection')[document.getElementById('Guild5_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 6:
-	   TempGuild = document.getElementById('Guild6_Selection')[document.getElementById('Guild6_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild6_lvls_Selection')[document.getElementById('Guild6_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 7:
-	   TempGuild = document.getElementById('Guild7_Selection')[document.getElementById('Guild7_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild7_lvls_Selection')[document.getElementById('Guild7_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 8:
-	   TempGuild = document.getElementById('Guild8_Selection')[document.getElementById('Guild8_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild8_lvls_Selection')[document.getElementById('Guild8_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 9:
-	   TempGuild = document.getElementById('Guild9_Selection')[document.getElementById('Guild9_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild9_lvls_Selection')[document.getElementById('Guild9_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 10:
-	   TempGuild = document.getElementById('Guild10_Selection')[document.getElementById('Guild10_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild10_lvls_Selection')[document.getElementById('Guild10_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 11:
-	   TempGuild = document.getElementById('Guild11_Selection')[document.getElementById('Guild11_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild11_lvls_Selection')[document.getElementById('Guild11_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 12:
-	   TempGuild = document.getElementById('Guild12_Selection')[document.getElementById('Guild12_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild12_lvls_Selection')[document.getElementById('Guild12_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 13:
-	   TempGuild = document.getElementById('Guild13_Selection')[document.getElementById('Guild13_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild3_lvls_Selection')[document.getElementById('Guild3_lvls_Selection').selectedIndex].value;
-	   break;
-	  case 14:
-	   TempGuild = document.getElementById('Guild14_Selection')[document.getElementById('Guild14_Selection').selectedIndex].value;
-	   TempLevel = document.getElementById('Guild14_lvls_Selection')[document.getElementById('Guild14_lvls_Selection').selectedIndex].value;
-	   break;
-  }
-  // Katsotaan jokainen kilta läpi ja asetetaan valittu leveli
-  switch (TempGuild)
-  {
-   case 'Aelena':
-    AelenaLvls = Number(TempLevel);
-	break;
-   case 'Alchemists':
-    AlchemistsLvls = Number(TempLevel);
-	break;
-   case 'Animist':
-    AnimistLvls = Number(TempLevel);
-	break;
-   case 'Archers':
-    ArchersLvls = Number(TempLevel);
-	break;
-   case 'Barbarian':
-    BarbarianLvls = Number(TempLevel);
-	break;
-   case 'Bard':
-    BardLvls = Number(TempLevel);
-	break;
-   case 'Beastmaster':
-    BeastmasterLvls = Number(TempLevel);
-	break;
-   case 'Cavalier':
-    CavalierLvls = Number(TempLevel);
-	break;
-   case 'Channelers':
-    ChannelersLvls = Number(TempLevel);
-	break;
-   case 'Civilized fighters':
-    Civilized_fightersLvls = Number(TempLevel);
-	break;
-   case 'Civmage':
-    CivmageLvls = Number(TempLevel);
-	break;
-   case 'Crimson':
-    CrimsonLvls = Number(TempLevel);
-	break;
-   case 'Disciple':
-    DiscipleLvls = Number(TempLevel);
-	break;
-   case 'Druids':
-    DruidsLvls = Number(TempLevel);
-	break;
-   case 'Explorer':
-    ExplorerLvls = Number(TempLevel);
-	break;
-   case 'Folklorist':
-    FolkloristLvls = Number(TempLevel);
-	break;
-   case 'Inner circle':
-    Inner_circleLvls = Number(TempLevel);
-	break;
-   case 'Kharim':
-    KharimLvls = Number(TempLevel);
-	break;
-   case 'Knight':
-    KnightLvls = Number(TempLevel);
-	break;
-   case 'Liberator':
-    LiberatorLvls = Number(TempLevel);
-	break;
-   case 'Mage':
-    MageLvls = Number(TempLevel);
-	break;
-   case 'Mage acid':
-    Mage_acidLvls = Number(TempLevel);
-	break;
-   case 'Mage asphyxiation':
-    Mage_asphLvls = Number(TempLevel);
-	break;
-   case 'Mage cold':
-    Mage_coldLvls = Number(TempLevel);
-	break;
-   case 'Mage electricity':
-    Mage_elecLvls = Number(TempLevel);
-	break;
-   case 'Mage fire':
-    Mage_fireLvls = Number(TempLevel);
-	break;
-   case 'Mage magical':
-    Mage_manaLvls = Number(TempLevel);
-	break;
-   case 'Mage poison':
-    Mage_poisonLvls = Number(TempLevel);
-	break;
-   case 'Merchant':
-    MerchantLvls = Number(TempLevel);
-	break;
-   case 'Monk':
-    MonkLvls = Number(TempLevel);
-	break;
-   case 'Navigator':
-    NavigatorLvls = Number(TempLevel);
-	break;
-   case 'Nergal':
-    NergalLvls = Number(TempLevel);
-	break;
-   case 'Nun':
-    NunLvls = Number(TempLevel);
-	break;
-   case 'Priests':
-    PriestsLvls = Number(TempLevel);
-	break;
-   case 'Psionicist':
-    PsionicistLvls = Number(TempLevel);
-	break;
-   case 'Ranger':
-    RangerLvls = Number(TempLevel);
-	break;
-   case 'Reaver':
-    ReaverLvls = Number(TempLevel);
-	break;
-   case 'Riftwalker':
-    RiftwalkerLvls = Number(TempLevel);
-	break;
-   case 'Runemages':
-    RunemagesLvls = Number(TempLevel);
-	break;
-   case 'Sabres':
-    SabresLvls = Number(TempLevel);
-	break;
-   case 'Spider':
-    SpiderLvls = Number(TempLevel);
-	break;
-   case 'Squire':
-    SquireLvls = Number(TempLevel);
-	break;
-   case 'Tarmalen':
-    TarmalenLvls = Number(TempLevel);
-	break;
-   case 'Templar':
-    TemplarLvls = Number(TempLevel);
-	break;
-   case 'Tiger':
-    TigerLvls = Number(TempLevel);
-	break;
-   case 'Treenav':
-    TreenavLvls = Number(TempLevel);
-	break;
-   case 'Tzarakk':
-    TzarakkLvls = Number(TempLevel);
-	break;
-  }
-  // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
-  Calculate_Levels();
-   // Kiltojen skillien ja spellien näytön kutsuminen:
-   changeInGuildLvls(leveli, kohde);
-  
- }
 
  // #########################################
  // # Funktio laskee apu muuttujien avulla  #
@@ -4968,15 +4714,138 @@
  // #########################################
  function Calculate_Levels()
  {
-  // Alku muuttujat
-  var Race_lvls = 0;
-  var Total_lvls = 0;
-  // Haetaan Race_guild leveli määrä
-  Race_lvls = document.getElementById('Race_guild_levels_Selection')[document.getElementById('Race_guild_levels_Selection').selectedIndex].value;
-  // Lasketaan yhteen ja muunnetaan string -> number
-  Total_lvls = Number(Race_lvls) + 10 + AelenaLvls + AlchemistsLvls + AnimistLvls + ArchersLvls + BarbarianLvls + BardLvls + BeastmasterLvls + ChannelersLvls + CavalierLvls + Civilized_fightersLvls + CivmageLvls + CrimsonLvls + DiscipleLvls + DruidsLvls + ExplorerLvls + FolkloristLvls + Inner_circleLvls + KharimLvls + KnightLvls + LiberatorLvls + MageLvls + Mage_acidLvls + Mage_asphLvls + Mage_coldLvls + Mage_elecLvls + Mage_fireLvls + Mage_manaLvls + Mage_poisonLvls + MerchantLvls + MonkLvls + NavigatorLvls + NergalLvls + NunLvls + PriestsLvls + PsionicistLvls + RangerLvls + ReaverLvls + RiftwalkerLvls + RunemagesLvls + SabresLvls + SpiderLvls + SquireLvls + TarmalenLvls + TemplarLvls + TigerLvls + TreenavLvls + TzarakkLvls;
+  
+  // Tästä alkaa Level Limitteri
+  var TempErotus = 0;
+  var TempKilta = "";
+  var ExtraSumma1 = 0;
+  var ExtraSumma2 = 0;
+  var ExtraLooppi1 = 1;
+  var ExtraLooppi2 = 1;
+  var ExtraApu1 = 0;
+  var ExtraApu2 = 0;
+  var ExtraRotu1 = 0;
+  // Extra toimintoja yksi
+  ExtraRotu1 = document.getElementById('Race_guild_levels_Selection')[document.getElementById('Race_guild_levels_Selection').selectedIndex].value;
+  ExtraApu1 = document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection')[document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').selectedIndex].value;
+  for ( ExtraLooppi1 = 1; ExtraLooppi1 < 15; ExtraLooppi1++ )
+  {
+    // Heataan joka loodasta luvut ja lasketaan yhteensä
+    ExtraApu2 = document.getElementById('Guild' + ExtraLooppi1 + '_lvls_Selection')[document.getElementById('Guild' + ExtraLooppi1 + '_lvls_Selection').selectedIndex].value;
+    ExtraSumma1 = ExtraSumma1 + Number(ExtraApu2);
+  }
+  // Lasketaan yhteis summaan rotu ja bg levelit
+  ExtraSumma1 = ExtraSumma1 + Number(ExtraRotu1) + 10;
+  // Lasketaan erotus
+  TempErotus = 100 - ExtraSumma1 + Number(ExtraApu1);
+  // Jos levelit yli 100 niin... 
+  if ( ExtraSumma1 > 100 )
+  {
+    // Jos TempErotus == 0
+    if ( TempErotus == 0 )
+    {
+      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options.length = 0;
+      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options[0] = new Option('0','0');
+      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_Selection').selectedIndex = "0";
+      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_Selection').disabled = true;
+      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').disabled = true;
+    }
+    // Jos TempErotus > 0
+    if ( TempErotus > 0 )
+    {
+      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options.length = 0;
+      var TempHyppy = 0;
+      for ( var x2 = TempErotus; x2 > 0; x2--)
+      {
+        document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options[TempHyppy] = new Option(x2,x2);
+        TempHyppy = TempHyppy + 1;
+      }
+      // ...disabloidaan muut
+      for ( var x3 = 1; x3 < 15; x3++ )
+      {
+        if ( document.getElementById('Guild' + x3 + '_Selection')[document.getElementById('Guild' + x3 + '_Selection').selectedIndex].value == "None" )
+        {
+          document.getElementById('Guild' + x3 + '_Selection').disabled = true;
+          document.getElementById('Guild' + x3 + '_lvls_Selection').disabled = true;
+        }
+      }
+    }
+    
+  }
+  // Jos levelit alle 100 niin enabloidaan muut
+  if ( ExtraSumma1 < 100 )
+  {
+    for ( var x4 = 1; x4 < 15; x4++ )
+    {
+      if ( document.getElementById('Guild' + x4 + '_Selection')[document.getElementById('Guild' + x4 + '_Selection').selectedIndex].value == "None" )
+      {
+        document.getElementById('Guild' + x4 + '_Selection').disabled = false;
+        document.getElementById('Guild' + x4 + '_lvls_Selection').disabled = false;
+      }
+    }
+    
+
+  }
+  // Jos levelit yhteensä 100 niin disabloidaan muut
+  if ( ExtraSumma1 == 100 )
+  {
+    for ( var x5 = 1; x5 < 15; x5++ )
+    {
+      if ( document.getElementById('Guild' + x5 + '_Selection')[document.getElementById('Guild' + x5 + '_Selection').selectedIndex].value == "None" )
+      {
+        document.getElementById('Guild' + x5 + '_Selection').disabled = true;
+        document.getElementById('Guild' + x5 + '_lvls_Selection').disabled = true;
+      }
+    }
+  }
+  // Extra toimintoja kaksi
+  for ( ExtraLooppi2 = 1; ExtraLooppi2 < 15; ExtraLooppi2++ )
+  {
+    ExtraApu2 = document.getElementById('Guild' + ExtraLooppi2 + '_lvls_Selection')[document.getElementById('Guild' + ExtraLooppi2 + '_lvls_Selection').selectedIndex].value;
+    ExtraSumma2 = ExtraSumma2 + Number(ExtraApu2);
+  }
+  ExtraSumma2 = ExtraSumma2 + Number(ExtraRotu1) + 10;
   // Tulostetaan Total_lvls
-  document.getElementById('TotalLevelsBox').innerHTML = "<b>Levels:</b> " + Total_lvls;
+  document.getElementById('TotalLevelsBox').innerHTML = "<b>Levels:</b> " + ExtraSumma2;
+   
+   // Kiltojen skillien ja spellien näytön kutsuminen:
+   changeInGuildLvls(Valittu_Kilta_Leveli, Valittu_Kilta_Kohta);
+ }
+
+ // Tämän funktion tarkoitus on verrata ja palauttaa/poistaa Lvls laatikosta leveleitä
+ function TESTI(kohde)
+ {
+   var TempErotus = 0;
+   var TempSumma = 0;
+   var TempApu = 0;
+   var TempKilta = document.getElementById('Guild' + kohde + '_Selection')[document.getElementById('Guild' + kohde + '_Selection').selectedIndex].value;
+   var TempLevels = document.getElementById('Guild' + kohde + '_lvls_Selection')[document.getElementById('Guild' + kohde + '_lvls_Selection').selectedIndex].value;
+   var TempRotuLevels = document.getElementById('Race_guild_levels_Selection')[document.getElementById('Race_guild_levels_Selection').selectedIndex].value;
+   
+   for ( var Looppi1 = 1; Looppi1 < 15; Looppi1++ )
+   {
+    // Heataan joka loodasta luvut ja lasketaan yhteensä
+    TempApu = document.getElementById('Guild' + Looppi1 + '_lvls_Selection')[document.getElementById('Guild' + Looppi1 + '_lvls_Selection').selectedIndex].value;
+    TempSumma = TempSumma + Number(TempApu);
+   }
+   // Lasketaan yhteis summaan rotu ja bg levelit
+   TempSumma = TempSumma + Number(TempRotuLevels) + 10;
+   // Lasketaan erotus
+   TempErotus = 100 - TempSumma + Number(TempLevels);
+   
+   if ( TempErotus == 0 )
+   {
+     switch(TempKilta)
+     {
+       case 'None':
+         console.log('Valinta = None ja kohde = ' + kohde);
+         break;
+       case 'Aelena':
+         console.log('Valinta = Aelena ja kohde = ' + kohde);
+         break;
+         
+     }
+   }
  }
 
   // ####################################
