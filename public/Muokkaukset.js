@@ -1,6 +1,14 @@
+/* 13 heinäkuuta, klo 12:37. Nyt on ensimmäinen suhtkoht. toimiva kiltaskillien valintajuttu valmiina
+                            Pitää lisätä kolmas kilta ja testata.. samoin varmaan voisi olla niin että kaikilla
+                            kiltoilla olisi oma total laskuri, eikä niinku nyt että se laskee kaikki siihen ekaan / 
+                            / caped
+*/
 /*
   12 heinäkuuta, klo 9:13. Nimesin reincsim.js tiedoston BoonsLevelsCost.js, johon vaikka booneille, levelcost, training points,
-                           level limitti ym jutuille koodia... / ordos
+                           level limitti ym jutuille koodia...
+                klo 15:37. Taisin saaja level limitterin toimintaan, vielä ascensions ynnätä siihen kylkeen.
+                klo 22:34. Poistin turhaa koodia ja yksi Update_Levels() funktio lähti sen myötä pois.
+                           Muutin killan lvls boxien onchange="Calculate_Levels()" / ordos
 */
 /*
   11 heinäkuuta, klo 12:40. Styletin total_text_box ja total_text_box2, asetin width 100px jos se olis sopiva leveys.

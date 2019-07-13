@@ -1,3 +1,25 @@
+// tämä selvittää onko kyseessä skilli vai spelli
+function checkIfSkillOrSpell(target) {
+  const skillit = document.getElementsByClassName('totalSkillz');
+  const spellit = document.getElementsByClassName('totalSpellz');
+  let foundIn = null;
+  
+  for (let i = 0; i < skillit.length; i++) {
+    const etsitaan = skillit[i].id.replace(/total/gi,'');
+    
+    if (target === etsitaan) { foundIn = 'skills'}
+  }
+  
+  for (let i = 0; i < spellit.length; i++) {
+    const etsitaan = spellit[i].id.replace(/total/gi,'');
+    
+    if (target === etsitaan) { foundIn = 'spells'}
+  }
+  
+  return foundIn;
+}
+
+
 function calcTotalExpsSpent() {
   const skillit = document.getElementsByClassName('totalSkillz');
   const spellit = document.getElementsByClassName('totalSpellz');
@@ -15,7 +37,9 @@ function calcTotalExpsSpent() {
 }
 // tällä voi laskea exp..
 function calcSpentExpGuilds(ide, val) {
-  // taiat ja taiot lista boxeista johon tulee expCostit
+  // valittu race
+  const selectedRace = ExpKerroin.filter( rotu => rotu.name === document.getElementById('Race_Selection').value);
+  // taiat ja taiot lista boxeista johon tulee expCosti
   const skillsSpells = document.getElementsByClassName('totalSS');
   let price = null;
   const costApuTaulukko = [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
@@ -37,6 +61,20 @@ function calcSpentExpGuilds(ide, val) {
         if (costApuTaulukko[i] == val) { hitti = i; }
       }
       
+      // jos ei ole tasaluku
+      if (hitti === null) {
+          /*
+  var TempApuJako1 = TempApuNro1 / 5;
+tosta tulee desimaali luku ja sit toinen joka luuraa sen desimaalit erikseen
+var TempApuDesimaali1 = TempApuJako1 - Math.round(TempApuJako1);
+if ( TempApuDesimaali1 > 0 )
+					{
+						TempApuSkilli2 = TempApuSkilli2 * (TempApuDesimaali1 + 1);
+0					}
+  */
+        
+      } 
+      
       // etsitään oikea lokero
       for (let ii = 0; ii < skillsSpells.length; ii++) {
         const etsittava = skillsSpells[ii].id.replace(/total/gi, '');
@@ -44,13 +82,54 @@ function calcSpentExpGuilds(ide, val) {
         if (etsittava === toSearch) { 
           
           oikeaLokero = skillsSpells[ii];
-          // jos numero niin laitetaan sellasenaan, jos ei ni 0
-          const onkoNumero = Number.isInteger(Human[sarake][hitti]);
-          onkoNumero ? oikeaLokero.innerHTML = Human[sarake][hitti] : oikeaLokero.innerHTML = 0;
+          const skillOrSpell = checkIfSkillOrSpell(toSearch);
+          let tulostettavaNumero = null;
           
-          // lasketaan
-          calcTotalExpsSpent();
-          return;
+          // jos taulukon tasanumeroita
+          if (hitti !== null) {
+            // onko numero?
+            const onkoNumero = Number.isInteger(Human[sarake][hitti]);
+            // jos numero, niin kerrotaan racen kertoimilla
+            if (onkoNumero){
+
+              if (skillOrSpell === 'skills') {
+
+                tulostettavaNumero = Math.round(Human[sarake][hitti] * selectedRace[0].skill);
+              } else {
+
+                tulostettavaNumero = Math.round(Human[sarake][hitti] * selectedRace[0].spell);
+              }
+            }
+            // jos numero, niin lokeroon, jos ei niin 0
+            onkoNumero ? oikeaLokero.innerHTML = tulostettavaNumero : oikeaLokero.innerHTML = 0;
+
+            // lasketaan kaikki
+            calcTotalExpsSpent();
+            return;            
+          } else {
+            const jalkimmainenNumero = val[1];
+            const pyoristetty = parseInt(val[0] + '0');
+            
+            // selvitetään lähimmät taulukossa olevat costit
+            for (let i = 0; i < costApuTaulukko.length; i++) {
+              
+              if (costApuTaulukko[i] == pyoristetty) { hitti = i; }
+           }
+           const erotus = Human[sarake][hitti+1] - Human[sarake][hitti];
+           const jaettu = erotus / 5;
+           const arvio = Human[sarake][hitti] + (jaettu * jalkimmainenNumero);
+           
+           if (skillOrSpell === 'skills') {
+
+             tulostettavaNumero = Math.round(arvio * selectedRace[0].skill);
+           } else {
+
+             tulostettavaNumero = Math.round(arvio * selectedRace[0].spell);
+           }
+           oikeaLokero.innerHTML = tulostettavaNumero; 
+           // lasketaan kaikki
+           calcTotalExpsSpent();
+         }
         }
       } 
     } 
@@ -92,28 +171,32 @@ function showSkillsAndSpells(kilta, kohta, mones) {
   // haetaan kilta:
   const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
   const skillsAndSpells = selectedGuild[0].mayTrain[0].skillsAndSpells;
-  let firstRow = null;
+  let firstRow = null; // ensimmäiset rivit
+  let lastRow = null;  // päättävät rivit
   // if sille tuleeko vaakaviiva vai ei:
   if (mones === 0) {
-    
+    // ensimmäinen
     firstRow = '<table class= "guildTable">'+ 
     '<tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
   '<tr><td>'+ 
     '<table><tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">'+
     'Spells</td><td></td><td class= "strongFont">Exp</td></tr>'; 
-  } else {
     
+    lastRow = '<tr><td></td><td class = "strongFont">Total cost</td>'+
+        '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td><td></td><td class = "strongFont">Total cost</td>'+
+        '<td><div id= "totalSpellsCost" class= "total_text_box">0</div></td></tr>'+
+        '</td></tr></table></td></tr></table><br>'; 
+  } else {
+    // loput
     firstRow = '<table class= "guildTable vaakaviiva">'+ 
     '<tr><td><span class= "bold_heading strongFont">'+ selectedGuild[0].longName + '</span></td></tr>'+
   '<tr><td>'+ 
     '<table><tr><td class= "strongFont">Skills</td><td></td><td class= "strongFont">Exp</td><td class= "strongFont">'+
     'Spells</td><td></td><td class= "strongFont">Exp</td></tr>'; 
+    
+    lastRow = '</td></tr></table></td></tr></table><br>'; 
   }
   
-  const lastRow = '<tr><td></td><td class = "strongFont">Total cost</td>'+
-        '<td><div id= "totalSkillsCost" class= "total_text_box">0</div></td><td></td><td class = "strongFont">Total cost</td>'+
-        '<td><div id= "totalSpellsCost" class= "total_text_box">0</div></td></tr>'+
-        '</td></tr></table></td></tr></table><br>';  // päättävä rivi
   // montako riviä tarvitaan:
   let rowNumber = null;  
   let readyRow = null;

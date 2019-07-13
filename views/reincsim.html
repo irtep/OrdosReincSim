@@ -8,12 +8,7 @@
 <!-- PAA Taulukko alkaa -->
 <table name="paa_taulukko" border="0" width="100%" height="100%" cellpadding="10">
 <tr><td valign="top">
-  <div class="fixed_testi">
-  Tämän teksti loota pitäis kohta seurata mukana! Tämän on vain testi! höhö 8D<br>
-    testaan tähän lootaan reset napin stylellä napin joka vaan tuo alert messagen, coool!<br><br>
-    <center><input type="button" class="reset_button" value="Click me!" onclick="alert('Toimii!')"></center>
-  </div>
-
+  
  <!-- Taulukko1 alkaa -->
  <table name="taulukko1" border="0" cellpadding="5" bgcolor="grey">
  <tr>
@@ -138,7 +133,7 @@
     </td>
     <td valign="top">
     <div class="bold_heading">Lvls:</div>
-    <select name="Guild1_lvls_Selection" id="Guild1_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 1)">
+    <select name="Guild1_lvls_Selection" id="Guild1_lvls_Selection" class="select_number_box" onmouseup="TESTI(1)" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -166,7 +161,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild2_lvls_Selection" id="Guild2_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 2)">
+    <select name="Guild2_lvls_Selection" id="Guild2_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -194,7 +189,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild3_lvls_Selection" id="Guild3_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 3)">
+    <select name="Guild3_lvls_Selection" id="Guild3_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -222,7 +217,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild4_lvls_Selection" id="Guild4_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 4)">
+    <select name="Guild4_lvls_Selection" id="Guild4_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -250,7 +245,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild5_lvls_Selection" id="Guild5_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 5)">
+    <select name="Guild5_lvls_Selection" id="Guild5_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -278,7 +273,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild6_lvls_Selection" id="Guild6_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 6)">
+    <select name="Guild6_lvls_Selection" id="Guild6_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -306,7 +301,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild7_lvls_Selection" id="Guild7_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 7)">
+    <select name="Guild7_lvls_Selection" id="Guild7_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -334,7 +329,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild8_lvls_Selection" id="Guild8_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 8)">
+    <select name="Guild8_lvls_Selection" id="Guild8_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -372,7 +367,7 @@
     </td>
     <td>
     <div class="bold_heading">Lvls:</div>
-    <select name="Guild9_lvls_Selection" id="Guild9_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 9)">
+    <select name="Guild9_lvls_Selection" id="Guild9_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -400,7 +395,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild10_lvls_Selection" id="Guild10_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 10)">
+    <select name="Guild10_lvls_Selection" id="Guild10_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -428,7 +423,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild11_lvls_Selection" id="Guild11_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 11)">
+    <select name="Guild11_lvls_Selection" id="Guild11_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -456,7 +451,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild12_lvls_Selection" id="Guild12_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 12)">
+    <select name="Guild12_lvls_Selection" id="Guild12_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -484,7 +479,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild13_lvls_Selection" id="Guild13_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 13)">
+    <select name="Guild13_lvls_Selection" id="Guild13_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
@@ -512,7 +507,7 @@
     </select>
     </td>
     <td>
-    <select name="Guild14_lvls_Selection" id="Guild14_lvls_Selection" class="select_number_box" onchange="Update_Levels(this.value, 14)">
+    <select name="Guild14_lvls_Selection" id="Guild14_lvls_Selection" class="select_number_box" onchange="Calculate_Levels()">
      <option value="0" selected>0</option>
     </select>
     </td>
