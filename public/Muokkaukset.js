@@ -1,6 +1,22 @@
-/* 13 heinäkuuta, klo 12:37. Nyt on ensimmäinen suhtkoht. toimiva kiltaskillien valintajuttu valmiina
-                            Pitää lisätä kolmas kilta ja testata.. samoin varmaan voisi olla niin että kaikilla
-                            kiltoilla olisi oma total laskuri, eikä niinku nyt että se laskee kaikki siihen ekaan / 
+/*
+  19 heinäkuuta, klo 16:50. Siirsin Calculate_Levels() funktion BoonsLevelsCost.js tiedostoon ja uudelleen nimesin vanhan Limitteri() / ordos
+*/
+/*
+   17 heinäkuuta, klo 12:00. Aloitin Boons tulostus koodin teon joka tulostaa boonit kun checked=true ja tyhjää kun checked=false / ordos
+*/
+/*
+   14 heinäkuuta, klo 15:15. Lisäsin KiltaMaxLvls taulukon data.js tiedostoon ja hahmottelen snoopperia uudestaa joka taulukon avulla
+                             osaisi tehdä lisays/poiston Lvls boxeissa ja alustavasti taikalooppi toiminnassa. / ordos
+*/
+/*
+   13 heinäkuuta, klo 18:17. Aikani takutessa koodin kanssa nurinpäin tulostus osoittaitui huonoksi, joten muutan nyt killan 
+                             valinnan yhteydessä oleva Lvls laatikko 1,2,3, jne järjestykseen ja koitan saada oletus levelin 
+                             killan maksimiin valituksi...
+                  klo 22:29. Vihdoin löysin hyvän esimerkin netistä ja palautin tulostuksen 3,2,1...myös leveli snoopperi lisäys
+                             valmis mutta toimii ainoastaan ekassa laatikossa ja valintana Aelenan lvls... / ordos
+*/
+/* 13 heinäkuuta, klo 12:37. Lisäsin kampetta guildFunctions.js... Lisäsin myös niin, että voi valita disciplinen
+                            .... mutta pitää tutkia... vielä jotain bugeja nyt kun disciplinen laitoin.../ 
                             / caped
 */
 /*

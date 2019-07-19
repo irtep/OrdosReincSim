@@ -499,6 +499,64 @@
   // # Rotu kohtaiset exp kertoimet DATA (loppuu) #
   // ##############################################
 
+  // ##############################################
+  // # Kilta kohtaiset level maksimi DATA (alkaa) #
+  // ##############################################
+
+  const KiltaMaxLvls = [
+  ["Aelena", 20],
+  ["Alchemists", 30],
+  ["Animist", 20],
+  ["Archers", 30],
+  ["Barbarian", 35],
+  ["Bard", 30],
+  ["Beastmaster", 15],
+  ["Channelers", 30],
+  ["Cavalier", 15],
+  ["Civilized fighters", 25],
+  ["Civmage", 25],
+  ["Crimson", 35],
+  ["Disciple", 10],
+  ["Druids", 30],
+  ["Explorer", 5],
+  ["Folklorist", 25],
+  ["Inner_circle", 10],
+  ["Kharim", 20],
+  ["Knight", 15],
+  ["Liberator", 30],
+  ["Mage", 10],
+  ["Mage acid", 10],
+  ["Mage asphyxiation", 10],
+  ["Mage cold", 10],
+  ["Mage electricity", 10],
+  ["Mage fire", 10],
+  ["Mage magical", 10],
+  ["Mage poison", 10],
+  ["Merchant", 25],
+  ["Monk", 30],
+  ["Navigator", 5],
+  ["Nergal", 20],
+  ["Nun", 35],
+  ["Priests", 35],
+  ["Psionicist", 35],
+  ["Ranger", 35],
+  ["Reaver", 30],
+  ["Riftwalker", 15],
+  ["Runemages", 30],
+  ["Sabres", 30],
+  ["Spider", 30],
+  ["Squire", 15],
+  ["Tarmalen", 30],
+  ["Templar", 30],
+  ["Tiger", 30],
+  ["Treenav", 3],
+  ["Tzarakk", 20]
+  ];
+
+  // ###############################################
+  // # Kilta kohtaiset level maksimi DATA (loppuu) #
+  // ###############################################
+
 /*
 hakuesimerkki:
 
@@ -620,6 +678,94 @@ const allGuilds = [
         new SkillSpell('Word of recall', false, true, 
           [20, 40, 60, 80, 100] 
           , 253)
+      ]
+    }]                                   
+  ),
+  new Guild('Disciple', 'The Disciples of Chaos',
+  // requirements:                                     
+    [],                                      
+  // skills and spells:
+    [{
+      skillsAndSpells: [  // nimi, skilli, spelli
+        // Skills:
+        new SkillSpell('Alertness', true, false, 
+          [5, 7, 10, 13, 16, 18, 21, 24, 27, 30] // paljon saa per leveli, 1, 2 , 3, 4, 5
+          , 288),  // skillcost ekalle 5% tälle...ei tarvii laittaa mitään, tää tulee muualta
+        new SkillSpell('Attack', true, false, 
+          [20, 26, 32, 38, 44, 50, 56, 62, 68, 75] // paljon saa per leveli, 1, 2 , 3, 4, 5
+          , 288),
+        new SkillSpell('Bludgeons', true, false, 
+          [0, 0, 10, 15, 21, 27, 32, 38, 44, 50] // paljon saa per leveli, 1, 2 , 3, 4, 5
+          , 288),
+        new SkillSpell('Chaotic spawn', true, false, 
+          [10, 14, 18, 23, 27, 32, 36, 41, 45, 50] // paljon saa per leveli, 1, 2 , 3, 4, 5
+          , 288),
+        new SkillSpell('Choreography of mutilation', true, false, 
+          [0, 0, 0, 0, 5, 6, 7, 8, 9, 10] // paljon saa per leveli, 1, 2 , 3, 4, 5
+          , 288),
+        new SkillSpell('Clawed strike', true, false, 
+          [10, 14, 18, 23, 27, 32, 36, 41, 45, 50] 
+          , 491),
+        new SkillSpell('Consider', true, false, 
+          [10, 16, 23, 29, 36, 43, 49, 56, 63, 70] 
+          , 253),
+        new SkillSpell('Controlled panic', true, false, 
+          [10, 12, 14, 16, 18, 21, 23, 25, 27, 30] 
+          , 253),
+        new SkillSpell('Darkness', false, true, 
+          [10, 17, 24, 31, 38, 46, 53, 60, 67, 75] 
+          , 253),
+        new SkillSpell('Dodge', true, false, 
+          [10, 12, 14, 16, 18, 21, 23, 25, 27, 30] 
+          , 253),
+        new SkillSpell('Enhance criticals', true, false, 
+          [0, 0, 0, 0, 5, 6, 7, 8, 9, 10] 
+          , 253),
+        new SkillSpell('Greater darkness', false, true, 
+          [0, 0, 0, 0, 10, 18, 26, 34, 42, 50] 
+          , 253),
+        new SkillSpell('Hiking', true, false, 
+          [5, 7, 10, 13, 16, 18, 21, 24, 27, 30] 
+          , 253),
+        new SkillSpell('Kick', true, false, 
+          [0, 0, 0, 0, 10, 20, 30, 40, 50, 60] 
+          , 253),
+        new SkillSpell('Kiss of death', true, false, 
+          [10, 15, 20, 25, 30, 30, 30, 30, 30, 30] 
+          , 253),
+        new SkillSpell('Long blades', true, false, 
+          [0, 0, 0, 0, 10, 18, 26, 34, 42, 50] 
+          , 253),
+        new SkillSpell('Negate offhand penalty', true, false,
+         [0, 0, 0, 0, 10, 14, 18, 22, 26, 30]
+          , 0),
+        new SkillSpell('Polearms', true, false,
+           [0, 0, 0, 0, 0, 0, 10, 23, 36, 50]
+            , 0),
+        new SkillSpell('Push', true, false,
+           [20, 28, 37, 46, 55, 64, 73, 82, 91, 100]
+            , 0),
+        new SkillSpell('Short blades', true, false,
+           [10, 14, 18, 23, 27, 32, 36, 41, 45, 50]
+            , 0),
+        new SkillSpell('Stun', true, false,
+           [0, 0, 0, 0, 10, 12, 14, 16, 18, 20]
+            , 0),
+        new SkillSpell('Swim', true, false,
+           [10, 14, 18, 23, 27, 32, 36, 41, 45, 50]
+            , 0),
+        new SkillSpell('Throw weight', true, false,
+           [5, 7, 10, 13, 16, 18, 21, 24, 27, 30]
+            , 0),
+        new SkillSpell('Tinning', true, false,
+           [20, 28, 37, 46, 55, 64, 73, 82, 91, 100]
+            , 0),
+        new SkillSpell('Torch creation', true, false,
+           [10, 14, 18, 23, 27, 32, 36, 41, 45, 50]
+            , 0),
+        new SkillSpell('Tumbling attack', true, false,
+           [0, 0, 0, 0, 5, 10, 15, 20, 25, 30]
+            , 0)
       ]
     }]                                   
   )

@@ -139,7 +139,7 @@ if ( TempApuDesimaali1 > 0 )
 // jos vaihtuu guild levelien määrä ni tää aktivoituu.. kutsutaan update_levels() raceBackgroundGuild.js kohdasta,
 // samoin check_requirements kutsuu tän
 // eli tästä alkaa kaikki functiot täällä:
-function changeInGuildLvls(leveli, kohde) {
+function changeInGuildLvls(leveli, kohde) { console.log('ch g lvl fired: ', leveli, kohde);
   // etsii kaikki jotka on class "guildSelector:"
   const kiltat = document.getElementsByClassName('guildSelector');
   const selectedGuild = document.getElementById('Guild'+kohde+'_Selection').value;
@@ -211,7 +211,7 @@ function showSkillsAndSpells(kilta, kohta, mones) {
   // katotaas monta riviä tarvitaan:
   if (skills.length >= spells.length) { rowNumber = skills.length; } else { rowNumber = spells.length; }  
   
-  let numbers = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
+  let numbers = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
   let filteredSkillNumbers = null;
   let filteredSpellNumbers = null;
   let skillOnTurn = null;
@@ -286,6 +286,30 @@ function showSkillsAndSpells(kilta, kohta, mones) {
   // lisätään rullavalikoihin numerot:
   const skillPercs = document.getElementsByClassName('skill_percents');
   const spellPercs = document.getElementsByClassName('spell_percents');
+  
+  // tässä varmaan pitäisi tyhjentää kaikki....
+  
+  // tyhjentää rullavalikon:
+  function removeOptions(selectbox) { 
+    var selectBoxi = document.getElementById(selectbox);                                 
+    var i = null;
+    
+    for (i = selectBoxi.options.length - 1 ; i >= 0 ; i--)
+    {
+        selectBoxi.remove(i);
+    }
+  }
+  
+  // tyhjäksi skillinumero boxit, ettei tuu tupla tms. arvoja.
+  // 0 jostain syystä jää sit puuttuu... pitää tutkia.
+  for (let ix = 0; ix < skillPercs.length; ix++ ) {
+    
+    removeOptions(skillPercs[ix].id);
+  }
+  for (let ix2 = 0; ix2 < spellPercs.length; ix2++ ) {
+    
+    removeOptions(spellPercs[ix2].id);
+  }
   
   // skillit:
   for (let i = 0; i < skills.length; i++) {

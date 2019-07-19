@@ -1,6 +1,21 @@
 /* styles */
 /* called by your view template */
 
+/* Labelien asetukset */
+.labelit {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* Checkboxien asetukset */
+.checkboxit {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
 /* TESTI FIXED */
 .fixed_testi {
   position: fixed;
