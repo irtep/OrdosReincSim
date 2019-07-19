@@ -2,14 +2,14 @@
  // # Globaalit muuttujat #
  // ####################### 
  // Muutama valikoitu muuttuja
- var Valittu_Syntyma;
- var Valittu_Rotu_Leveli; 
- var Valittu_Rotu;
- var Valittu_Tausta;
- var Valittu_Kilta;
- var Valittu_Kilta_Leveli;
- var Valittu_Kilta_Kohta;
- var Levelien_Kokonaismaara;
+ var Valittu_Syntyma = "Mortal";
+ var Valittu_Rotu_Leveli = 5; 
+ var Valittu_Rotu = "Barsoomian";
+ var Valittu_Tausta = "Civilized";
+ var Valittu_Kilta = "None";
+ var Valittu_Kilta_Leveli = 0;
+ var Valittu_Kilta_Kohta = 1;
+ var Levelien_Kokonaismaara = 0;
  // Kilta leveli muuttujat
  var AelenaLvls = 0;
  var AelenaPosition = 0;
@@ -634,7 +634,8 @@
        option3.text = x3;
        select3.add(option3);       
       }
-	  AelenaLvls = 20;
+	    AelenaLvls = 20;
+      Valittu_Kilta_Leveli = 20;
 	 }
     }
     // Palautetaan muihin listoihin Aelena
@@ -716,7 +717,8 @@
        option3.text = x3;
        select3.add(option3);       
       }
-	  AlchemistsLvls = 30;
+	    AlchemistsLvls = 30;
+      Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Alchemists
@@ -804,6 +806,7 @@
        select3.add(option3);       
       }
 	  AnimistLvls = 20;
+     Valittu_Kilta_Leveli = 20;
 	 }
     }
     // Palautetaan muihin listoihin Animist
@@ -886,6 +889,7 @@
        select3.add(option3);       
       }
 	  ArchersLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Archers
@@ -968,6 +972,7 @@
        select3.add(option3);       
       }
 	  BarbarianLvls = 35;
+     Valittu_Kilta_Leveli = 35;
 	 }
     }
     // Palautetaan muihin listoihin Barbarian
@@ -1050,6 +1055,7 @@
        select3.add(option3);       
       }
 	  BardLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Bard
@@ -1136,6 +1142,7 @@
        select3.add(option3);       
       }
 	  BeastmasterLvls = 15;
+     Valittu_Kilta_Leveli = 15;
 	 }
     }
     // Palautetaan muihin listoihin Beastmaster
@@ -1218,6 +1225,7 @@
        select3.add(option3);       
       }
 	  ChannelersLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Channelers
@@ -1306,6 +1314,7 @@
        select3.add(option3);       
       }
 	  CavalierLvls = 15;
+     Valittu_Kilta_Leveli = 15;
 	 }
     }
     // Palautetaan muihin listoihin Cavalier
@@ -1388,6 +1397,7 @@
        select3.add(option3);       
       }
 	  Civilized_fightersLvls = 25;
+     Valittu_Kilta_Leveli = 25;
 	 }
     }
     // Palautetaan muihin listoihin Civilized fighters
@@ -1442,7 +1452,7 @@
    // Looppi 1 alkaa
    while ( looppi1 < 15 )
    {
-    // Poistetaan muista listoista Civilized fighters
+    // Poistetaan muista listoista Civmage
     if ( kilta == "Civmage" )
     {
 	 CivmagePosition = kohta;
@@ -1470,9 +1480,10 @@
        select3.add(option3);       
       }
 	  CivmageLvls = 25;
+     Valittu_Kilta_Leveli = 25;
 	 }
     }
-    // Palautetaan muihin listoihin Civilized fighters
+    // Palautetaan muihin listoihin Civmage
     if ( kilta != "Civmage" && CivmageStatus == "no" )
     {
 	  CivmageLvls = 0;
@@ -1552,6 +1563,7 @@
        select3.add(option3);       
       }
 	  CrimsonLvls = 35;
+     Valittu_Kilta_Leveli = 35;
 	 }
     }
     // Palautetaan muihin listoihin Civilized fighters
@@ -1635,6 +1647,7 @@
        select3.add(option3);       
       }
 	  DiscipleLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Disciple
@@ -1717,6 +1730,7 @@
        select3.add(option3);       
       }
 	  DruidsLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Druids
@@ -1803,6 +1817,7 @@
        select3.add(option3);       
       }
 	  ExplorerLvls = 5;
+    Valittu_Kilta_Leveli = 5;
 	 }
     }
     // Palautetaan muihin listoihin Explorer
@@ -1885,6 +1900,7 @@
        select3.add(option3);       
       }
 	  FolkloristLvls = 25;
+     Valittu_Kilta_Leveli = 25;
 	 }
     }
     // Palautetaan muihin listoihin Folklorist
@@ -1971,6 +1987,7 @@
        select3.add(option3);       
       }
 	  Inner_circleLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Inner circle
@@ -2058,6 +2075,7 @@
        select3.add(option3);       
       }
 	  KharimLvls = 20;
+     Valittu_Kilta_Leveli = 20;
 	 }
     }
     // Palautetaan muihin listoihin Kharim
@@ -2146,6 +2164,7 @@
        select3.add(option3);       
       }
 	  KnightLvls = 15;
+     Valittu_Kilta_Leveli = 15;
 	 }
     }
     // Palautetaan muihin listoihin Knight
@@ -2228,6 +2247,7 @@
        select3.add(option3);       
       }
 	  LiberatorLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Liberator
@@ -2310,6 +2330,7 @@
        select3.add(option3);       
       }
 	  MageLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage
@@ -2396,6 +2417,7 @@
        select3.add(option3);       
       }
 	  Mage_acidLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage_acid
@@ -2482,6 +2504,7 @@
        select3.add(option3);       
       }
 	  Mage_asphLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage asph
@@ -2561,13 +2584,14 @@
 	  document.getElementById('Guild' + Mage_coldPosition + '_lvls_Selection').options.length = 0;
 	  for ( var x3 = 10; x3 > 0; x3-- )
       {
-       var select3 = document.getElementById('Guild' + Mage_asphPosition + '_lvls_Selection');
+       var select3 = document.getElementById('Guild' + Mage_coldPosition + '_lvls_Selection');
        var option3 = document.createElement('option');
        option3.value = x3;
        option3.text = x3;
        select3.add(option3);       
       }
-	  Mage_asphLvls = 10;
+	  Mage_coldLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage cold
@@ -2654,6 +2678,7 @@
        select3.add(option3);       
       }
 	  Mage_elecLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage elec
@@ -2740,6 +2765,7 @@
        select3.add(option3);       
       }
 	  Mage_fireLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage fire
@@ -2826,6 +2852,7 @@
        select3.add(option3);       
       }
 	  Mage_manaLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage mana
@@ -2912,6 +2939,7 @@
        select3.add(option3);       
       }
 	  Mage_poisonLvls = 10;
+     Valittu_Kilta_Leveli = 10;
 	 }
     }
     // Palautetaan muihin listoihin Mage poison
@@ -2994,6 +3022,7 @@
        select3.add(option3);       
       }
 	  MerchantLvls = 25;
+     Valittu_Kilta_Leveli = 25;
 	 }
     }
     // Palautetaan muihin listoihin Merchant
@@ -3076,6 +3105,7 @@
        select3.add(option3);       
       }
 	  MonkLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Monk
@@ -3161,6 +3191,7 @@
        select3.add(option3);       
       }
 	  NavigatorLvls = 5;
+     Valittu_Kilta_Leveli = 5;
 	 }
     }
     // Palautetaan muihin listoihin Navigator
@@ -3247,6 +3278,7 @@
        select3.add(option3);       
       }
 	  NergalLvls = 20;
+     Valittu_Kilta_Leveli = 20;
 	 }
     }
     // Palautetaan muihin listoihin Nergal
@@ -3329,6 +3361,7 @@
        select3.add(option3);       
       }
 	  NunLvls = 35;
+     Valittu_Kilta_Leveli = 35;
 	 }
     }
     // Palautetaan muihin listoihin Nun
@@ -3411,6 +3444,7 @@
        select3.add(option3);       
       }
 	  PriestsLvls = 35;
+     Valittu_Kilta_Leveli = 35;
 	 }
     }
     // Palautetaan muihin listoihin Priests
@@ -3493,6 +3527,7 @@
        select3.add(option3);       
       }
 	  PsionicistLvls = 35;
+     Valittu_Kilta_Leveli = 35;
 	 }
     }
     // Palautetaan muihin listoihin Psionicist
@@ -3579,6 +3614,7 @@
        select3.add(option3);       
       }
 	  RangerLvls = 35;
+     Valittu_Kilta_Leveli = 35;
 	 }
     }
     // Palautetaan muihin listoihin Ranger
@@ -3661,6 +3697,7 @@
        select3.add(option3);       
       }
 	  ReaverLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Reaver
@@ -3743,6 +3780,7 @@
        select3.add(option3);       
       }
 	  RiftwalkerLvls = 15;
+     Valittu_Kilta_Leveli = 15;
 	 }
     }
     // Palautetaan muihin listoihin Riftwalker
@@ -3825,6 +3863,7 @@
        select3.add(option3);       
       }
 	  RunemagesLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Runemages
@@ -3907,6 +3946,7 @@
        select3.add(option3);       
       }
 	  SabresLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Sabres
@@ -3989,6 +4029,7 @@
        select3.add(option3);       
       }
 	  SpiderLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Spider
@@ -4077,6 +4118,7 @@
        select3.add(option3);       
       }
 	  SquireLvls = 15;
+     Valittu_Kilta_Leveli = 15;
 	 }
     }
     // Palautetaan muihin listoihin Squire
@@ -4159,6 +4201,7 @@
        select3.add(option3);       
       }
 	  TarmalenLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Tarmalen
@@ -4241,6 +4284,7 @@
        select3.add(option3);       
       }
 	  TemplarLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Templar
@@ -4323,6 +4367,7 @@
        select3.add(option3);       
       }
 	  TigerLvls = 30;
+     Valittu_Kilta_Leveli = 30;
 	 }
     }
     // Palautetaan muihin listoihin Tiger
@@ -4409,6 +4454,7 @@
        select3.add(option3);       
       }
 	  TreenavLvls = 3;
+     Valittu_Kilta_Leveli = 3;
 	 }
     }
     // Palautetaan muihin listoihin Treenav
@@ -4496,6 +4542,7 @@
        select3.add(option3);       
       }
 	  TzarakkLvls = 20;
+     Valittu_Kilta_Leveli = 20;
 	 }
     }
     // Palautetaan muihin listoihin Tzarakk
@@ -4531,7 +4578,7 @@
 
    
   // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
-  Calculate_Levels();
+  Calculate_Levels(Valittu_Kilta_Leveli, Valittu_Kilta_Kohta);
   
     
   // #########################################
@@ -4704,148 +4751,6 @@
   }
   // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
   Calculate_Levels();
- }
-
-
- // #########################################
- // # Funktio laskee apu muuttujien avulla  #
- // # kaikki valitut kiltojen levelit       #
- // # yhteen ja tulostaa sen TotalLevelsBox #
- // #########################################
- function Calculate_Levels()
- {
-  
-  // Tästä alkaa Level Limitteri
-  var TempErotus = 0;
-  var TempKilta = "";
-  var ExtraSumma1 = 0;
-  var ExtraSumma2 = 0;
-  var ExtraLooppi1 = 1;
-  var ExtraLooppi2 = 1;
-  var ExtraApu1 = 0;
-  var ExtraApu2 = 0;
-  var ExtraRotu1 = 0;
-  // Extra toimintoja yksi
-  ExtraRotu1 = document.getElementById('Race_guild_levels_Selection')[document.getElementById('Race_guild_levels_Selection').selectedIndex].value;
-  ExtraApu1 = document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection')[document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').selectedIndex].value;
-  for ( ExtraLooppi1 = 1; ExtraLooppi1 < 15; ExtraLooppi1++ )
-  {
-    // Heataan joka loodasta luvut ja lasketaan yhteensä
-    ExtraApu2 = document.getElementById('Guild' + ExtraLooppi1 + '_lvls_Selection')[document.getElementById('Guild' + ExtraLooppi1 + '_lvls_Selection').selectedIndex].value;
-    ExtraSumma1 = ExtraSumma1 + Number(ExtraApu2);
-  }
-  // Lasketaan yhteis summaan rotu ja bg levelit
-  ExtraSumma1 = ExtraSumma1 + Number(ExtraRotu1) + 10;
-  // Lasketaan erotus
-  TempErotus = 100 - ExtraSumma1 + Number(ExtraApu1);
-  // Jos levelit yli 100 niin... 
-  if ( ExtraSumma1 > 100 )
-  {
-    // Jos TempErotus == 0
-    if ( TempErotus == 0 )
-    {
-      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options.length = 0;
-      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options[0] = new Option('0','0');
-      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_Selection').selectedIndex = "0";
-      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_Selection').disabled = true;
-      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').disabled = true;
-    }
-    // Jos TempErotus > 0
-    if ( TempErotus > 0 )
-    {
-      document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options.length = 0;
-      var TempHyppy = 0;
-      for ( var x2 = TempErotus; x2 > 0; x2--)
-      {
-        document.getElementById('Guild' + Valittu_Kilta_Kohta + '_lvls_Selection').options[TempHyppy] = new Option(x2,x2);
-        TempHyppy = TempHyppy + 1;
-      }
-      // ...disabloidaan muut
-      for ( var x3 = 1; x3 < 15; x3++ )
-      {
-        if ( document.getElementById('Guild' + x3 + '_Selection')[document.getElementById('Guild' + x3 + '_Selection').selectedIndex].value == "None" )
-        {
-          document.getElementById('Guild' + x3 + '_Selection').disabled = true;
-          document.getElementById('Guild' + x3 + '_lvls_Selection').disabled = true;
-        }
-      }
-    }
-    
-  }
-  // Jos levelit alle 100 niin enabloidaan muut
-  if ( ExtraSumma1 < 100 )
-  {
-    for ( var x4 = 1; x4 < 15; x4++ )
-    {
-      if ( document.getElementById('Guild' + x4 + '_Selection')[document.getElementById('Guild' + x4 + '_Selection').selectedIndex].value == "None" )
-      {
-        document.getElementById('Guild' + x4 + '_Selection').disabled = false;
-        document.getElementById('Guild' + x4 + '_lvls_Selection').disabled = false;
-      }
-    }
-    
-
-  }
-  // Jos levelit yhteensä 100 niin disabloidaan muut
-  if ( ExtraSumma1 == 100 )
-  {
-    for ( var x5 = 1; x5 < 15; x5++ )
-    {
-      if ( document.getElementById('Guild' + x5 + '_Selection')[document.getElementById('Guild' + x5 + '_Selection').selectedIndex].value == "None" )
-      {
-        document.getElementById('Guild' + x5 + '_Selection').disabled = true;
-        document.getElementById('Guild' + x5 + '_lvls_Selection').disabled = true;
-      }
-    }
-  }
-  // Extra toimintoja kaksi
-  for ( ExtraLooppi2 = 1; ExtraLooppi2 < 15; ExtraLooppi2++ )
-  {
-    ExtraApu2 = document.getElementById('Guild' + ExtraLooppi2 + '_lvls_Selection')[document.getElementById('Guild' + ExtraLooppi2 + '_lvls_Selection').selectedIndex].value;
-    ExtraSumma2 = ExtraSumma2 + Number(ExtraApu2);
-  }
-  ExtraSumma2 = ExtraSumma2 + Number(ExtraRotu1) + 10;
-  // Tulostetaan Total_lvls
-  document.getElementById('TotalLevelsBox').innerHTML = "<b>Levels:</b> " + ExtraSumma2;
-   
-   // Kiltojen skillien ja spellien näytön kutsuminen:
-   changeInGuildLvls(Valittu_Kilta_Leveli, Valittu_Kilta_Kohta);
- }
-
- // Tämän funktion tarkoitus on verrata ja palauttaa/poistaa Lvls laatikosta leveleitä
- function TESTI(kohde)
- {
-   var TempErotus = 0;
-   var TempSumma = 0;
-   var TempApu = 0;
-   var TempKilta = document.getElementById('Guild' + kohde + '_Selection')[document.getElementById('Guild' + kohde + '_Selection').selectedIndex].value;
-   var TempLevels = document.getElementById('Guild' + kohde + '_lvls_Selection')[document.getElementById('Guild' + kohde + '_lvls_Selection').selectedIndex].value;
-   var TempRotuLevels = document.getElementById('Race_guild_levels_Selection')[document.getElementById('Race_guild_levels_Selection').selectedIndex].value;
-   
-   for ( var Looppi1 = 1; Looppi1 < 15; Looppi1++ )
-   {
-    // Heataan joka loodasta luvut ja lasketaan yhteensä
-    TempApu = document.getElementById('Guild' + Looppi1 + '_lvls_Selection')[document.getElementById('Guild' + Looppi1 + '_lvls_Selection').selectedIndex].value;
-    TempSumma = TempSumma + Number(TempApu);
-   }
-   // Lasketaan yhteis summaan rotu ja bg levelit
-   TempSumma = TempSumma + Number(TempRotuLevels) + 10;
-   // Lasketaan erotus
-   TempErotus = 100 - TempSumma + Number(TempLevels);
-   
-   if ( TempErotus == 0 )
-   {
-     switch(TempKilta)
-     {
-       case 'None':
-         console.log('Valinta = None ja kohde = ' + kohde);
-         break;
-       case 'Aelena':
-         console.log('Valinta = Aelena ja kohde = ' + kohde);
-         break;
-         
-     }
-   }
  }
 
   // ####################################
