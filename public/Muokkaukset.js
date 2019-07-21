@@ -1,4 +1,11 @@
 /*
+  21 heinäkuuta, kello 14:39. Sain laitettua guildFunctions.js laskurit kuntoon.. pitää vaan lisätä kiltoja ja skillejä data.js:n / caped
+*/
+/*
+  19 heinäkuuta, klo 22:53. Bugien korjausta guildFunctions.js... hiukan ehkä edistyin, mutta hommaa piisaa / caped
+*/
+
+/*
   19 heinäkuuta, klo 16:50. Siirsin Calculate_Levels() funktion BoonsLevelsCost.js tiedostoon ja uudelleen nimesin vanhan Limitteri() / ordos
 */
 /*
