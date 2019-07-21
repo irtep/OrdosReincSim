@@ -318,7 +318,7 @@
   // Kutsutaan Update_RaceGuild_Skills_Spells() funtiota joka päivittää rotukillan skills & spells
   Update_RaceGuild_Skills_Spells();
   // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
-  Calculate_Levels();
+  Calculate_Levels(0,1);
  }
  
  // ################################
@@ -5031,7 +5031,7 @@
 		}
      }
      // Kutsutaan Calculate_Levels() funktiota joka laskee kokonais levelit
-     Calculate_Levels();
+     Calculate_Levels(0,1);
   }
 
   // ########################################
@@ -5149,8 +5149,6 @@
 	  }
   }
   
-  
   // Sivun ladattua kutsutaan Update_RaceGuild_Skills_Spells() funktiota joka päivittää Rotukillan skillit & spellit
-  window.onload = (()=> { Update_RaceGuild_Skills_Spells(); });
-  
- 
+  Update_RaceGuild_Skills_Spells();
+

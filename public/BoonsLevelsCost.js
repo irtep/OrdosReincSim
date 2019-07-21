@@ -1,9 +1,38 @@
+  // #############################
+  // # Ascension levelit (alkaa) #
+  // #############################
+  function Ascension_Levels()
+  {
+    var Hyppy = 0;
+    var ApuArray = [];
+    for ( var HyppyLooppi = 0; HyppyLooppi < 101; HyppyLooppi++ )
+    {
+      for ( var ApuLooppi = 0; ApuLooppi < 5; ApuLooppi++ )
+      {
+        ApuArray.push(Hyppy);
+      }
+      Hyppy = Hyppy + 1;
+    }
+    for ( var Looppi = 1; Looppi < 101; Looppi++ )
+    {
+      var select1 = document.getElementById('Ascension_Selection');
+      var option1 = document.createElement("option");
+      option1.value = ApuArray[Looppi];
+      option1.text = Looppi;
+      select1.add(option1);
+    }
+  }
+  // ##############################
+  // # Ascension levelit (loppuu) #
+  // ##############################
+
   // ##############################
   // # Ascension tulostus (alkaa) #
   // ##############################
-  function Ascension_Levels()
+  function Update_Ascension()
   {
-    // koodia..
+    var Ascension_lvls = document.getElementById('Ascension_Selection')[document.getElementById('Ascension_Selection').selectedIndex].value;
+    document.getElementById('Ascension_Text').innerHTML = '<b class="bold_heading">Ascension:</b> (+' + Ascension_lvls + ')';
   }
   // ###############################
   // # Ascension tulostus (loppuu) #
@@ -14,14 +43,17 @@
   // ##############################
   function Limitteri(kohta)
   {
-    // Tähän koodia...
-    //console.log('Hiiri havaittu!');
     var Summa = 0;
     var Apu = 0;
     var Rotulvls = 0;
     var Erotus = 0;
     var Kilta = "";
     var Levelit = 0;
+    var Ascension_lvls = document.getElementById('Ascension_Selection')[document.getElementById('Ascension_Selection').selectedIndex].value;
+    
+    if (kohta === undefined) {  // jos kutsutaan ilman numeroa niin annetaan 1.
+      kohta = 1;
+    }
     // Lasketaan levelit yhteensä
     for ( var Laskuri = 1; Laskuri < 15; Laskuri++ )
     {
@@ -30,18 +62,16 @@
     }
     Rotulvls = document.getElementById('Race_guild_levels_Selection')[document.getElementById('Race_guild_levels_Selection').selectedIndex].value;
     Summa = Summa + Number(Rotulvls) + 10;
-    //console.log('Summa='+Summa);
-    Erotus = Summa - 100;
+    Erotus = Summa - 100 - Number(Ascension_lvls);
     Kilta = document.getElementById('Guild' + kohta +'_Selection')[document.getElementById('Guild' + kohta +'_Selection').selectedIndex].value;
     Levelit = document.getElementById('Guild' + kohta +'_lvls_Selection')[document.getElementById('Guild' + kohta +'_lvls_Selection').selectedIndex].value;
     if ( Erotus > 0 && Kilta != "None" )
     {
-      //console.log('Kilta='+Kilta+' ja Levels='+Levelit+' ja Summa='+Summa+' ja Erotus='+Erotus);
       for ( var Poisto = 0; Poisto < Erotus; Poisto++ )
       {
         var select1 = document.getElementById('Guild' + kohta + '_lvls_Selection');
         select1.remove(0);
-        Summa = 100;
+        Summa = 100 + Number(Ascension_lvls);
         document.getElementById('TotalLevelsBox').innerHTML = "<b>Levels:</b> " + Summa;
       }
       // Tarkistetaan onko tyhjä      
@@ -53,7 +83,7 @@
         option2.value = "0";
         option2.text = "0";
         select2.add(option2, select2[0]);
-        Summa = 100;
+        Summa = 100 + Number(Ascension_lvls);
         document.getElementById('TotalLevelsBox').innerHTML = "<b>Levels:</b> " + Summa;
       }
     }
@@ -244,3 +274,6 @@
     // # Boonien tulostus (loppuu) #
     // #############################
   }
+  
+  // Sivun ladattua kutsutaan Ascension_Levels() funktiota joka tulostaa 1-100 levelit valinta laatikkoon
+  Ascension_Levels();

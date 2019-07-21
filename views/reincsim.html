@@ -514,10 +514,10 @@
     </tr>
     <tr>
     <td>
-    <div class="bold_heading">Ascension:</div>
+      <div id="Ascension_Text"><b class="bold_heading">Ascension:</b> (+0)</div>
     </td>
     <td>
-    <select name="Ascension_Selection" id="Ascension_Selection" class="select_number_box">
+    <select name="Ascension_Selection" id="Ascension_Selection" class="select_number_box" onchange="Update_Ascension()">
      <option value="0">0</option>
     </select>
     </td>
@@ -622,7 +622,6 @@
        <div class="bold_heading">Boons<label class="labelit" valign="center"> (Toggle boons) <input type="checkbox" class="checkboxit" id="Boons_Checkboxi" onchange="Update_Boons()"></label></div>
      </td></tr>
      <tr><td id="Boons_Box">
-       Tähän tulostetaan Boonit...
      </td></tr>
    </table>
    <!-- Extra taulukko X loppuu -->
@@ -697,8 +696,9 @@
 </script>
 <script src="guildFunctions.js">
 </script>  
-<script src="RaceBackgroundGuilds.js">
-</script>
+
 <script src="BoonsLevelsCost.js">
 </script>
-</html>
+<script src="RaceBackgroundGuilds.js">
+</script>
+</html><!--  ei vaan ascension triggaa, jos se kutsu eripäin???   tutkitaas....-->
