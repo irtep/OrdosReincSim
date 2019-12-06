@@ -86,8 +86,8 @@
   <div class="bold_heading">Background:</div>
   <select name="Background_Selection" id="Background_Selection" class="select_text_box" onchange="Update_Guilds(this.value)">
    <option value="Civilized" selected>Civilized</option>
-   <option value="Evil religious">Evil religious</option>
-   <option value="Good religious">Good religious</option>
+   <option value="Evil_religious">Evil religious</option>
+   <option value="Good_religious">Good religious</option>
    <option value="Magical">Magical</option>
    <option value="Nomad">Nomad</option>
   </select>
@@ -532,32 +532,145 @@
    </td>
    <td valign="top" class="pystyviiva">
     <!-- Taulukko6 alkaa -->
-    <table name="taulukko6" border="0" cellpadding="5">
+    <table name="taulukko6" border="0" width="300" cellpadding="5">
     <tr>
     <td valign="top" name="RaceInfoBox" id="RaceInfoBox">
     <div class="bold_heading">Race information:</div>
   	<!-- Taulukko7 alkaa -->
-  	<table border="0" cellpadding="3">
+  	<table border="0" cellpadding="3" width="100%">
   	<tr>
   	<td><b>Race:</b></td><td id="Race_Name">Barsoomian</td>
   	</tr><tr>
-  	<td><b>Str:</b></td><td id="Race_Str">63</td>
+    <td></td>
+    <td>
+    <!-- Taulukko Cur & Max alkaa -->
+    <table border="0" width="100%">
+    <tr>
+    <td align="left" width="50">Cur</td><td width="100"></td><td align="left" width="50">Rac</td>
+    </tr>
+    </table>
+    <!-- Taulukko Cur & Max loppuu -->
+    </td>
   	</tr><tr>
-  	<td><b>Dex:</b></td><td id="Race_Dex">101</td>
+  	<td><b>Con:</b></td><td>
+    <!-- Taulukko CON alkaa -->
+    <table border="0" width="100%">
+    <tr>
+    <td align="left" width="50" id="Race_Con_Min">??</td>
+    <td align="left" width="100">
+    <select class="select_number_box2" name="Con_TP" id="Con_TP" onchange="Calculate_TP()">
+    <option>0 (0)</option>
+    </select>
+    </td><td align="left" width="50" id="Race_Con_Max">77</td>
+    </tr>
+    </table>
+    <!-- Taulukko CON loppuu -->
+    </td>
   	</tr><tr>
-  	<td><b>Con:</b></td><td id="Race_Con">77</td>
+  	<td><b>Str:</b></td><td>
+    <!-- Taulukko STR alkaa -->
+    <table border="0" width="100%">
+    <tr>
+    <td align="left" width="50" id="Race_Str_Min">??</td>
+    <td align="left" width="100">
+    <select class="select_number_box2" name="Str_TP" id="Str_TP" onchange="Calculate_TP()">
+    <option>0 (0)</option>
+    </select>
+    </td><td align="left" width="50" id="Race_Str_Max">63</td>
+    </tr>
+    </table>
+    <!-- Taulukko STR loppuu -->
+    </td>
   	</tr><tr>
-  	<td><b>Int:</b></td><td id="Race_Int">52</td>
+  	<td><b>Int:</b></td><td>
+    <!-- Taulukko INT alkaa -->
+    <table border="0" width="100%">
+    <tr>
+    <td align="left" width="50" id="Race_Int_Min">??</td>
+    <td align="left" width="100">
+    <select class="select_number_box2" name="Int_TP" id="Int_TP" onchange="Calculate_TP()">
+    <option>0 (0)</option>
+    </select>
+    </td><td align="left" width="50" id="Race_Int_Max">52</td>
+    </tr>
+    </table>
+    <!-- Taulukko INT loppuu -->
+    </td>
   	</tr><tr>
-  	<td><b>Wis:</b></td><td id="Race_Wis">42</td>
+  	<td><b>Wis:</b></td><td>
+    <!-- Taulukko WIS alkaa -->
+    <table border="0" width="100%">
+    <tr>
+    <td align="left" width="50" id="Race_Wis_Min">??</td>
+    <td align="left" width="100">
+    <select class="select_number_box2" name="Wis_TP" id="Wis_TP" onchange="Calculate_TP()">
+    <option>0 (0)</option>
+    </select>
+    </td><td align="left" width="50" id="Race_Wis_Max">42</td>
+    </tr>
+    </table>
+    <!-- Taulukko WIS loppuu -->
+    </td>
   	</tr><tr>
-  	<td><b>Size:</b></td><td id="Race_Size">50</td>
+  	<td><b>Dex:</b></td><td>
+    <!-- Taulukko DEX alkaa -->
+    <table border="0" width="100%">
+    <tr>
+    <td align="left" width="50" id="Race_Dex_Min">??</td>
+    <td align="left" width="100">
+    <select class="select_number_box2" name="Dex_TP" id="Dex_TP" onchange="Calculate_TP()">
+    <option>0 (0)</option>
+    </select>
+    </td><td align="left" width="50" id="Race_Dex_Max">101</td>
+    </tr>
+    </table>
+    <!-- Taulukko DEX loppuu -->
+    </td>
   	</tr><tr>
-  	<td><b>Exp:</b></td><td id="Race_Exprate">80</td>
+  	<td><b>Size:</b></td>
+	<td>
+	<!-- Taulukko SIZE alkaa -->
+	<table border="0">
+	<tr>
+	<td id="Race_Size" width="50">50</td>
+	</tr>
+	</table>
+	<!-- Taulukko SIZE loppuu -->
+	</td>
   	</tr><tr>
-  	<td><b>Skill:</b></td><td id="Race_Skillmax">74</td>
+  	<td><b>Exp:</b></td>
+	<td>
+	<!-- Taulukko EXPRATE & HPS alkaa -->
+	<table border="0">
+	<tr>
+	<td id="Race_Exprate" width="50">80</td>
+	<td width="50"><b>Hps:</b></td><td id="Race_Hps">0</td>
+	</tr>
+  	</table>
+    <!-- Taulukko EXPRATE & HPS loppuu -->
+	</td>
+	</tr><tr>
+  	<td><b>Skill:</b></td>
+	<td>
+	<!-- Taulukko SKILLMAX & SPS alkaa -->
+	<table border="0">
+	<tr>
+	<td id="Race_Skillmax" width="50">74</td>
+	<td width="50"><b>Sps:</b></td><td id="Race_Sps">0</td>
+	</td>
+	</table>
+	<!-- Taulukko SKILLMAX & SPS loppuu -->
   	</tr><tr>
-  	<td><b>Spell:</b></td><td id="Race_Spellmax">60</td>
+  	<td><b>Spell:</b></td>
+	<td>
+	<!-- Taulukko SPELLMAX & EPS alkaa -->
+	<table border="0">
+	<tr>
+	<td id="Race_Spellmax" width="50">60</td>
+	<td width="50"><b>Eps:</b></td><td id="Race_Eps">0</td>
+	</td>
+	</table>
+	<!-- Taulukko SPELLMAX & EPS loppuu -->
   	</tr>
   	</table>
   	<!-- Taulukko7 loppuu -->
@@ -595,25 +708,25 @@
          <b>Total exp:</b>
        </td>
 		   <td>
-		     <div id="TotalsExp" class="total_text_box2">1234567890</div>
+		     <div id="TotalsExp" class="total_text_box2">0</div>
 		   </td>
        <td>
          <b>Total gold:</b>
        </td>
 		   <td>
-		     <div id="TotalsGold" class="total_text_box2">1234567890</div>
+		     <div id="TotalsGold" class="total_text_box2">0</div>
 		   </td>
        <td>
 		     <b>Training points:</b>
 		   </td>
        <td>
-         <div id="TotalsTrainingPoints" class="total_text_box2">1234567890</div>
+         <div id="TotalsTrainingPoints" class="total_text_box2">0</div>
        </td>
 		   <td>
 		     <b>Taskpoints:</b>
 		   </td>
        <td>
-         <div class="total_text_box2">1234567890</div>
+         <div class="total_text_box2">0</div>
        </td>
       </tr>
       </table>
@@ -701,4 +814,4 @@
 </script>
 <script src="RaceBackgroundGuilds.js">
 </script>
-</html><!--  ei vaan ascension triggaa, jos se kutsu eripäin???   tutkitaas....-->
+</html>

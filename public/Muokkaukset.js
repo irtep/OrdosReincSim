@@ -1,4 +1,48 @@
 /*
+  1 joulukuuta, klo 12:38. Leveli exp costi laskuri valmis. Vielä yhdistää skill&spell exp costit jotenkin koodiin. / ordos
+                klo 16:50. Html tiedosto päivitetty. Lisätty Hps Sps Eps Rotu infoon. / ordos
+                klo 18:17. Funktio Calculate_RaceGuild_ExpCost() päivitetty, id tagit uupuivat div elementeistä ja
+                           nyt rotu killan skill&spell exp costit myös ynnäytyy TotalExp boxiin. / ordos
+*/
+/*
+  30 marraskuuta, klo 10:26. Hirveä noin 5000 rivi syöppö koodi supistui reiluun 100 riviin! Toimii toistaiseksi
+                             Civilized !!! Data vielä muokata oikeanlaiseksi ! / ordos
+                  klo 14:33. Killan poitso/lisäys näyttäisi alustavasti toimivan OK ja data päivitetty myös. / ordos
+                  klo 19:12. Korjasin pari kirjoitus virhettä (data.js) ja testaus jatkuu... / ordos
+*/
+/*
+  29 marraskuuta, klo 10.12. Rotukillan valinnat heittivät error viestiä. Kahdessa paikassa Update_RaceGuild_Skills_Spells()
+                             funktiossa puuttui ID viittaus, tämä on nyt korjattu. / ordos
+*/
+/*
+  28 marraskuuta, klo 11:04. Treenaus piste data uusittu ja sen luenta koodi. Toimivuus OK! / ordos
+                  klo 15:23. Funktio Calculate_TP() lisätty, laskee treeni pisteet yhteensä. / ordos
+*/
+/*
+  27 marraskuuta, klo 16:11. Treenaus pisteet tulostuvat dropdown boxeihin rotu info elementissä (toistaiseksi vain Duck) / ordos
+                  klo 19:44. Treenipisteiden hakeminen datasta ja laittaminen dropdown boxeihin valmis. / ordos
+*/
+/*
+  26 marraskuuta, klo 12:55. Rotujen stattien treenauspiste pohjan hahmottelu valmis. Myös alustavasti Duck treeni pisteet
+                             valmiina datassa (50 kpl) ja osittain Lich (vajaa). Tarkoitus hieman muokata dropdown boxit
+                             html sivulla sopiviksi datan kanssa... / ordos
+                  klo 13:18. Html sivun rotu info asettelu valmis. Näyttää ihan ok (toistaiseksi) / ordos
+                  klo 20:10. Satyr stattien treenipisteet valmiina datassa. / ordos
+*/
+/*
+  23 marraskuuta, klo 15:34. Rotujen statti elementin muokkaus aloitettu (Current | Max) / ordos
+                  klo 16:18. Jokseenkin asettelu OK, vaatii vielä toimivuuden koodaus! / ordos
+                  klo 19:00. Hieman Rotu stattien dataa muokkaan että saisi haluamalla tavalla tulostukset / ordos
+*/
+/*
+  23 marraskuuta, klo 14:13. Boonit "muistavat" valintansa valmis! / ordos
+*/
+/*
+  19 marraskuuta, klo 13:40. Aloitin taas koodaamaan. ALustavasti tarkoitus saada Boonien tilat (BoonsLevelsCost.js) muuttujiin jotta 
+                             tila säilyisi vaikka listan piilottaisi/näkyviin (toggle) / ordos
+*/
+
+/*
   21 heinäkuuta, kello 14:39. Sain laitettua guildFunctions.js laskurit kuntoon.. pitää vaan lisätä kiltoja ja skillejä data.js:n / caped
 */
 /*

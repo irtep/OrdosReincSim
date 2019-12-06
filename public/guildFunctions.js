@@ -170,7 +170,7 @@ function showSkillsAndSpells(kilta, kohta, mones) {
   const spells = [];
   // haetaan kilta:
   const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
-  const skillsAndSpells = selectedGuild[0].mayTrain[0].skillsAndSpells;
+  const skillsAndSpells = selectedGuild[0].skillsAndSpells;
   let firstRow = null; // ensimmäiset rivit
   let lastRow = '<tr><td></td><td class = "strongFont">Total cost</td>'+
         '<td><div id= "totalSkillsCost '+selectedGuild[0].shortName+'" class= "total_text_box">0</div></td><td></td><td class = "strongFont">Total cost</td>'+

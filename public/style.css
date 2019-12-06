@@ -81,6 +81,14 @@
   background-color: #f1f1f1;
 }
 
+.select_number_box2 {
+  width: 85px;
+  padding: 3px 3px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+
 /* Lihavoitu otsikko tekstin asetukset */
 .bold_heading {
   font-size: 20px;
