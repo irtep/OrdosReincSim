@@ -169,6 +169,7 @@ function showSkillsAndSpells(kilta, kohta, mones) {
   const skills = [];
   const spells = [];
   // haetaan kilta:
+  console.log('kilta ', kilta);
   const selectedGuild = allGuilds.filter(guild => kilta === guild.shortName);
   const skillsAndSpells = selectedGuild[0].skillsAndSpells;
   let firstRow = null; // ensimmäiset rivit
